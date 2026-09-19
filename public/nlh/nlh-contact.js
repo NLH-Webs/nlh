@@ -11,7 +11,7 @@
   'use strict';
   if (customElements.get('nlh-contact')) return;
 
-  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbPLACEHOLDER/exec';
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzG2THjkAqFQNFF4IWjIJOMcb9hkwrQ7AYewI1h3iHKuvxsINR7Y_02DfH5IN5fZKnwGw/exec';
   var TEAM_EMAIL = 'contact@nhi.sg';
 
   // Keep first-touch UTM/referrer for the whole visit, even after navigation.
