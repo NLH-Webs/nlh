@@ -279,7 +279,8 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
 .cta-band p{color:var(--muted);max-width:54ch;margin:20px auto 34px}
 
 /* ============ FOOTER ============ */
-.footer{border-top:1px solid var(--hair);margin-top:96px;padding:54px 0 60px}
+.nlh-lead{padding:var(--s-8) var(--gutter);margin-top:96px}
+.footer{border-top:1px solid var(--hair);margin-top:0;padding:54px 0 60px}
 .footer .wrap{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}
 .footer .brand small{margin-top:4px}
 .footer .fcol h5{font-family:var(--font-body);font-size:var(--size-caption);letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin:0 0 16px;font-weight:700}
@@ -363,7 +364,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
         <button type="button" class="lang-opt is-active" data-lang="en">EN</button>
         <button type="button" class="lang-opt" data-lang="vi">VI</button>
       </div>
-      <a id="partnerBtn" class="btn btn-gold" target="_blank" rel="noopener" href="mailto:contact@nhi.sg" data-en="Partner with us" data-vi="Đồng hành cùng chúng tôi">Partner with us</a>
+      <a id="partnerBtn" class="btn btn-gold" href="#lead" data-en="Partner with us" data-vi="Đồng hành cùng chúng tôi">Partner with us</a>
     </div>
   </div>
 </header>
@@ -640,6 +641,10 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
 </main>
 
 <!-- ============ FOOTER ============ -->
+<section class="nlh-lead" id="lead">
+    <nlh-contact site="nlh" topics-en="Partnership|Invest or collaborate|Media and speaking|Programmes (N-Education)|Volunteer or join NhiLe Team" topics-vi="Hợp tác|Đầu tư – đồng hành|Truyền thông – diễn giả|Chương trình học (N-Education)|Tham gia NhiLe Team"></nlh-contact>
+  </section>
+<script src="/nlh/nlh-contact.js" defer></script>
 <footer class="footer">
   <div class="wrap">
     <a class="brand" href="#top">
