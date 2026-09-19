@@ -1,0 +1,320 @@
+/* ============================================================
+   NLH-TOKENS v1.3.1 — Nguồn sự thật duy nhất về giao diện
+   Người giữ file: Lê Thảo Nhi (@thaonhi125-tech) — mọi thay đổi, kể cả sửa lỗi, phải qua Nhi duyệt
+   NhiLe Holdings · 2026-09-18 · v1.2: chốt 4 màu thương hiệu (Nedu lấy từ nedu.vn) + thêm --action-ink
+   v1.2.1: khu vực create/public thôi khai lại --bg-* (đè mất nền tối)
+   v1.3: thêm 3 biến vai trò qua Cổng Durov, Nhi duyệt 18.09 — --scrim · --bg-media · --text-on-media
+   v1.3.1: sửa 19 cặp rớt tương phản do máy kiểm bắt, Nhi duyệt 18.09 — --pub-* trỏ sang lớp vai trò (có bản nền tối);
+           --nlh-ash sẫm một bậc; --brand-nlt-ink riêng cho chữ; khu vực create dùng --action-ink làm điểm nhấn
+   Kèm theo: NL-PROMPT-DESIGN-SYSTEM-001.md
+
+   LUẬT: không portal nào được viết màu, cỡ chữ, khoảng cách,
+   bo góc bằng số cứng. Mọi thứ gọi qua biến trong file này.
+   Sửa giao diện toàn hệ thống = sửa file này, không sửa portal.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   LỚP 1 — NGUYÊN LIỆU (primitive). Không dùng thẳng trong component.
+   ------------------------------------------------------------ */
+:root {
+  /* Thang xám — trung tính, không mang nhận diện thương hiệu nào */
+  --nlh-ink:      #1d1d1f;
+  --nlh-carbon:   #333336;
+  --nlh-graphite: #474749;
+  --nlh-ash:      #6b6b6f;
+  --nlh-mist:     #8e8e93;
+  --nlh-pebble:   #d2d2d7;
+  --nlh-cloud:    #e8e8ed;
+  --nlh-frost:    #f5f5f7;
+  --nlh-white:    #ffffff;
+  --nlh-void:     #000000;
+
+  /* Màu tín hiệu — chỉ dùng cho trạng thái, KHÔNG dùng trang trí */
+  --nlh-green:    #1e7a34;
+  --nlh-amber:    #b25000;
+  --nlh-red:      #d70015;
+
+  /* Nhận diện từng thương hiệu — CHỐT 18.09.2026
+     Mỗi thương hiệu có 3 giá trị: nền nút (brand) · chữ trên nút (on) ·
+     màu khi dùng làm CHỮ trên nền sáng (ink) — vì vàng làm chữ trên trắng
+     không đọc được, phải dùng bản sẫm. */
+  --brand-nedu:        #f7b50c;  /* vàng Nedu — lấy từ nedu.vn (--brand-gold) */
+  --brand-nedu-on:     #1d1d1f;
+  --brand-nedu-ink:    #7a5000;  /* vàng sẫm để làm chữ — nedu.vn dùng đúng mã này */
+  --brand-nlt:         #df0029;  /* đỏ NhiLe Team */
+  --brand-nlt-on:      #ffffff;
+  --brand-nlt-ink:     #d80027;  /* đỏ làm CHỮ sẫm hơn nền nút một chút để đạt 4.5:1 trên nền chìm có màu */
+  --brand-noi:         #1f7a4d;  /* xanh lá N-ơi — Claude chọn, Nhi duyệt 18.09 */
+  --brand-noi-on:      #ffffff;
+  --brand-noi-ink:     #1f7a4d;
+  --brand-nquoc:       #0b6fb5;  /* xanh da trời NQuoc — Claude chọn, Nhi duyệt 18.09 */
+  --brand-nquoc-on:    #ffffff;
+  --brand-nquoc-ink:   #0b6fb5;
+
+  /* Biến thể NỀN TỐI — luật Apple: mỗi màu có 2 bản.
+     Màu đậm dùng làm CHỮ trên nền đen sẽ chìm, nên phải sáng lên. */
+  --brand-nedu-dark:   #f7b50c;  --brand-nedu-dark-on:  #1d1d1f;
+  --brand-nlt-dark:    #ff4d6d;  --brand-nlt-dark-on:   #1d1d1f;
+  --brand-noi-dark:    #6ed3a3;  --brand-noi-dark-on:   #1d1d1f;
+  --brand-nquoc-dark:  #6bbdf7;  --brand-nquoc-dark-on: #1d1d1f;
+
+  /* Chữ */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Thang chữ — 7 bậc, neo ở 17px như Apple, không thêm bậc thứ 8 */
+  --size-caption:  12px;  --lh-caption:  1.34; --ls-caption:  -0.01em;
+  --size-small:    14px;  --lh-small:    1.43; --ls-small:    -0.01em;
+  --size-body:     17px;  --lh-body:     1.47; --ls-body:     -0.016em;
+  --size-lead:     21px;  --lh-lead:     1.33; --ls-lead:     -0.012em;
+  --size-title:    28px;  --lh-title:    1.21; --ls-title:    -0.014em;
+  --size-hero:     40px;  --lh-hero:     1.15; --ls-hero:     -0.018em;
+  --size-display:  56px;  --lh-display:  1.07; --ls-display:  -0.022em;
+
+  --w-regular: 400;
+  --w-medium:  500;
+  --w-semibold: 600;
+  --w-bold:    700;
+
+  /* Khoảng cách — bội số của 4, 9 bậc, không đẻ thêm */
+  --s-1:  4px;   --s-2:  8px;   --s-3: 12px;  --s-4: 16px;  --s-5: 24px;
+  --s-6: 32px;   --s-7: 48px;   --s-8: 64px;  --s-9: 96px;
+
+  /* Bo góc */
+  --r-xs:   6px;   /* tag, badge */
+  --r-sm:  10px;   /* ô nhập, nút vuông */
+  --r-md:  14px;   /* thẻ nội dung */
+  --r-lg:  20px;   /* hộp lớn, modal */
+  --r-pill: 980px; /* nút chính, chip lọc */
+
+  /* Độ nổi — chỉ 2 mức. Thẻ thường KHÔNG có bóng, dùng viền. */
+  --elev-float: 0 2px 8px rgba(0,0,0,.08);
+  --elev-modal: 0 12px 40px rgba(0,0,0,.18);
+
+  /* Chuyển động — một đường cong duy nhất */
+  --ease: cubic-bezier(.25,.1,.25,1);
+  --t-fast: 160ms;
+  --t-base: 260ms;
+  --t-slow: 420ms;
+
+  /* Bố cục */
+  --container: 1200px;
+  --container-wide: 1440px;
+  --gutter: var(--s-5);
+  --tap-min: 44px;        /* vùng bấm tối thiểu, luật Apple */
+  --measure: 68ch;        /* độ dài dòng đọc tối đa */
+}
+
+/* ------------------------------------------------------------
+   LỚP 2 — VAI TRÒ (semantic). Component CHỈ được gọi lớp này.
+   Tên nói công dụng, không nói màu.
+   ------------------------------------------------------------ */
+:root,
+[data-theme="light"] {
+  --bg-base:      var(--nlh-white);
+  --bg-sunken:    var(--nlh-frost);
+  --bg-raised:    var(--nlh-white);
+  --bg-hover:     rgba(0,0,0,.04);
+  --bg-selected:  rgba(0,0,0,.06);
+
+  --text-primary:   var(--nlh-ink);
+  --text-secondary: var(--nlh-graphite);
+  --text-tertiary:  var(--nlh-ash);
+  --text-disabled:  var(--nlh-mist);
+  --text-inverse:   var(--nlh-white);
+
+  --line-hairline: var(--nlh-cloud);
+  --line-strong:   var(--nlh-pebble);
+
+  --state-ok:    var(--nlh-green);
+  --state-warn:  var(--nlh-amber);
+  --state-error: var(--nlh-red);
+
+  /* Lớp phủ mờ dưới hộp thoại / tấm trượt */
+  --scrim: rgba(0,0,0,.40);
+  /* Khung video: luôn đen ở cả hai nền, chữ trên đó luôn trắng */
+  --bg-media:      var(--nlh-void);
+  --text-on-media: var(--nlh-white);
+
+  /* Màu hành động — mặc định là Nedu, portal ghi đè bằng data-brand */
+  --action:     var(--brand-nedu);
+  --action-on:  var(--brand-nedu-on);
+  --action-ink: var(--brand-nedu-ink);   /* dùng khi màu thương hiệu là CHỮ */
+  --focus-ring: color-mix(in srgb, var(--action) 55%, transparent);
+
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg-base:      #000000;
+  --bg-sunken:    #0a0a0c;
+  --bg-raised:    #1c1c1e;
+  --bg-hover:     rgba(255,255,255,.06);
+  --bg-selected:  rgba(255,255,255,.10);
+
+  --text-primary:   #f5f5f7;
+  --text-secondary: #aeaeb2;
+  --text-tertiary:  #8e8e93;
+  --text-disabled:  #5c5c60;
+  --text-inverse:   #1d1d1f;
+
+  --line-hairline: rgba(255,255,255,.10);
+  --line-strong:   rgba(255,255,255,.20);
+
+  --state-ok:    #30d158;
+  --state-warn:  #ff9f0a;
+  --state-error: #ff453a;
+
+  --scrim: rgba(0,0,0,.64);
+
+  --elev-float: 0 2px 8px rgba(0,0,0,.5);
+  --elev-modal: 0 12px 40px rgba(0,0,0,.7);
+
+  color-scheme: dark;
+}
+
+/* Ghi đè màu hành động theo thương hiệu của portal */
+[data-brand="nedu"]  { --action: var(--brand-nedu);  --action-on: var(--brand-nedu-on);  --action-ink: var(--brand-nedu-ink); }
+[data-brand="nlt"]   { --action: var(--brand-nlt);   --action-on: var(--brand-nlt-on);   --action-ink: var(--brand-nlt-ink); }
+[data-brand="noi"]   { --action: var(--brand-noi);   --action-on: var(--brand-noi-on);   --action-ink: var(--brand-noi-ink); }
+[data-brand="nquoc"] { --action: var(--brand-nquoc); --action-on: var(--brand-nquoc-on); --action-ink: var(--brand-nquoc-ink); }
+[data-theme="dark"][data-brand="nedu"]  { --action: var(--brand-nedu-dark);  --action-on: var(--brand-nedu-dark-on);  --action-ink: var(--brand-nedu-dark); }
+[data-theme="dark"][data-brand="nlt"]   { --action: var(--brand-nlt-dark);   --action-on: var(--brand-nlt-dark-on);   --action-ink: var(--brand-nlt-dark); }
+[data-theme="dark"][data-brand="noi"]   { --action: var(--brand-noi-dark);   --action-on: var(--brand-noi-dark-on);   --action-ink: var(--brand-noi-dark); }
+[data-theme="dark"][data-brand="nquoc"] { --action: var(--brand-nquoc-dark); --action-on: var(--brand-nquoc-dark-on); --action-ink: var(--brand-nquoc-dark); }
+
+/* ------------------------------------------------------------
+   LỚP 2.5 — KHU VỰC (theo việc người dùng đang làm, không theo brand)
+   Thương hiệu quyết màu HÀNH ĐỘNG. Khu vực quyết KHÔNG KHÍ:
+   nền ấm/lạnh, độ bão hoà, và bộ màu trạng thái riêng của nghề đó.
+   Mỗi khu vực chỉ được đụng 4 biến: --bg-base, --bg-sunken,
+   --bg-raised, --area-accent. Không hơn.
+   ------------------------------------------------------------ */
+
+/* HỌC — đọc lâu, cần tập trung, hạ kích thích.
+   Nền ấm như giấy, bão hoà thấp; đỏ chỉ dành cho lỗi. */
+[data-area="learn"] {
+  --bg-base:   #fdfaf5;   /* = --surface của nedu.vn */
+  --bg-sunken: #f5f0e8;   /* = --bg của nedu.vn — cùng một tờ giấy với trang chủ */
+  --bg-raised: #ffffff;
+  --area-accent: #7a5000;
+}
+[data-theme="dark"][data-area="learn"] {
+  --bg-base:   #121110;
+  --bg-sunken: #0b0a09;
+  --bg-raised: #1e1c19;
+  --area-accent: #c9b48a;
+}
+
+/* SOẠN — tạo nội dung, cần bình tĩnh + biết rõ nháp/đã đăng.
+   Nền trung tính, trạng thái đăng phải nổi hơn mọi thứ khác. */
+[data-area="create"] {
+  /* KHÔNG khai lại --bg-* ở đây: nền trung tính = nền mặc định của theme.
+     Khai lại bằng màu sáng sẽ đè mất nền tối (lỗi v1.2, sửa ở v1.2.1). */
+  --area-accent: var(--action-ink);
+  --pub-draft:     var(--text-tertiary);
+  --pub-live:      var(--state-ok);
+  --pub-scheduled: var(--state-warn);
+}
+
+/* TRỰC INBOX — phân loại nhanh 200–500 tin/ngày.
+   Nền lạnh, tương phản cao; màu nhãn lead theo phép ẩn dụ nhiệt
+   đội đã dùng sẵn (Hot/Warm/Cold/Rác) để mắt phân loại trước khi đọc. */
+[data-area="triage"] {
+  --bg-base:   #f7f9fb;
+  --bg-sunken: #eef2f6;
+  --bg-raised: #ffffff;
+  --area-accent: #1f5f8b;
+  --lead-hot:  #c23f12;
+  --lead-warm: #8a6100;
+  --lead-cold: #2f6ba8;
+  --lead-junk: var(--nlh-mist);
+}
+[data-theme="dark"][data-area="triage"] {
+  --bg-base:   #0b0f14;
+  --bg-sunken: #060a0e;
+  --bg-raised: #151b22;
+  --area-accent: #6fb3e6;
+  --lead-hot:  #ff6b3d;
+  --lead-warm: #ffc233;
+  --lead-cold: #5fa3ee;
+}
+
+/* VẬN HÀNH — số liệu, quy trình, nhiều bảng. Lạnh, bão hoà thấp,
+   không tô ấm để khỏi tạo cảm giác khẩn cấp giả. */
+[data-area="operate"] {
+  --bg-base:   #f8f9fb;
+  --bg-sunken: #eff1f5;
+  --bg-raised: #ffffff;
+  --area-accent: #3a4a6b;
+}
+[data-theme="dark"][data-area="operate"] {
+  --bg-base:   #0d0f14;
+  --bg-sunken: #08090c;
+  --bg-raised: #171a22;
+  --area-accent: #9fb0d6;
+}
+
+/* CỘNG ĐỒNG — kết nối người với người. Ấm hơn, bão hoà cao hơn một chút. */
+[data-area="connect"] {
+  --bg-base:   #fffbf7;
+  --bg-sunken: #fbf1e8;
+  --bg-raised: #ffffff;
+  --area-accent: #b8562a;
+}
+[data-theme="dark"][data-area="connect"] {
+  --bg-base:   #14100d;
+  --bg-sunken: #0c0907;
+  --bg-raised: #221b16;
+  --area-accent: #f0906a;
+}
+
+/* CÔNG CHÚNG — trang trưng bày, uy tín thể chế. Gần đơn sắc, một điểm nhấn. */
+[data-area="public"] {
+  /* Nền = nền mặc định của theme — cùng lý do với khu vực create. */
+  --area-accent: var(--nlh-ink);
+}
+[data-theme="dark"][data-area="public"] {
+  --area-accent: var(--nlh-frost);
+}
+
+/* ------------------------------------------------------------
+   LỚP 3 — NỀN CHUNG
+   ------------------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: var(--size-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: var(--w-semibold); margin: 0; }
+h1 { font-size: var(--size-hero);  line-height: var(--lh-hero);  letter-spacing: var(--ls-hero); }
+h2 { font-size: var(--size-title); line-height: var(--lh-title); letter-spacing: var(--ls-title); }
+h3 { font-size: var(--size-lead);  line-height: var(--lh-lead);  letter-spacing: var(--ls-lead); }
+p  { margin: 0; max-width: var(--measure); }
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--r-xs);
+}
+
+/* Chữ to co lại trên màn hẹp — luật hệ thống, không phải tuỳ chọn của portal */
+@media (max-width: 820px) {
+  :root { --size-display: 40px; --size-hero: 32px; --size-title: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
