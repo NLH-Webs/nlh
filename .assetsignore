@@ -4,3 +4,5 @@ node_modules
 wrangler.jsonc
 .assetsignore
 package.json
+dist
+build.mjs

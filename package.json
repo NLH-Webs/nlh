@@ -3,6 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "build": "node -e \"console.log('NhiLe Holding is a static site — no build step; serving repo root.')\""
+    "build": "node build.mjs"
   }
 }
