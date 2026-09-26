@@ -6,7 +6,7 @@
    v1.3: thêm 3 biến vai trò qua Cổng Durov, Nhi duyệt 18.09 — --scrim · --bg-media · --text-on-media
    v1.3.1: sửa 19 cặp rớt tương phản do máy kiểm bắt, Nhi duyệt 18.09 — --pub-* trỏ sang lớp vai trò (có bản nền tối);
            --nlh-ash sẫm một bậc; --brand-nlt-ink riêng cho chữ; khu vực create dùng --action-ink làm điểm nhấn
-   v1.3.2 (ĐỀ XUẤT — CHỜ NHI DUYỆT qua Cổng Durov, 26.09): thêm thương hiệu NhiLe Holdings `data-brand="nlh"`
+   v1.3.2 (qua Cổng Durov, Nhi duyệt 26.09 — Tyna xác nhận): thêm thương hiệu NhiLe Holdings `data-brand="nlh"`
            — vàng kim #D4A017 theo bảng "NhiLe Holdings — Dark Premium" của chuẩn NL-QA-NHILE-001
            (skill nhile-qa-standards / leaders-nlh). Trang Holding đang mặc vàng Nedu = Red Flag "sai màu brand".
    Kèm theo: NL-PROMPT-DESIGN-SYSTEM-001.md
@@ -53,7 +53,7 @@
   --brand-nquoc:       #0b6fb5;  /* xanh da trời NQuoc — Claude chọn, Nhi duyệt 18.09 */
   --brand-nquoc-on:    #ffffff;
   --brand-nquoc-ink:   #0b6fb5;
-  --brand-nlh:         #d4a017;  /* vàng kim NhiLe Holdings — bảng Dark Premium (NL-QA-NHILE-001). v1.3.2, chờ Nhi duyệt */
+  --brand-nlh:         #d4a017;  /* vàng kim NhiLe Holdings — bảng Dark Premium (NL-QA-NHILE-001). v1.3.2, Nhi duyệt 26.09 */
   --brand-nlh-on:      #1d1d1f;  /* 7.1:1 trên #d4a017 */
   --brand-nlh-ink:     #8a6508;  /* vàng kim sẫm để làm CHỮ trên nền sáng: 5.3:1 trên trắng, 4.9:1 trên --nlh-frost.
                                     #b7860b của bảng màu chỉ đạt 3.3:1 nên không dùng làm chữ */

@@ -127,12 +127,13 @@ Portal cần có `architecture.md`, gộp từ API contract đã được Data G
 ## 10. Repo `nlh` (nlh.nhi.sg) — chỗ đang lệch chuẩn
 
 - **Stack:** trang là HTML tĩnh (`index.html` + `nlh/nlh-tokens.css`), chưa phải Next.js 15 + OpenNext như §3.
-  - **Why:** trang có sẵn từ trước; chuyển stack là việc riêng, chờ chị Nhi duyệt ADR `NL-ADR-NLH-001` (bản nháp ghi Next.js 14, cần sửa thành 15).
-  - **How to apply:** sửa trong HTML tĩnh, mọi màu, cỡ chữ, khoảng cách đi qua token `nlh-tokens.css`; không thêm form, dữ liệu động hay đăng nhập cho tới khi chuyển stack.
+  - **Why:** chị Nhi duyệt ADR [`docs/NL-ADR-NLH-001.md`](docs/NL-ADR-NLH-001.md) v1.0 ngày 26/09/2026 — phương án A, giữ HTML tĩnh.
+  - **How to apply:** sửa trong HTML tĩnh, mọi màu, cỡ chữ, khoảng cách đi qua token `nlh-tokens.css`; không thêm form, dữ liệu động hay đăng nhập — muốn thêm thì mở ADR mới để chuyển sang Next.js 15.
 - **Git flow:** `origin/dev` đang chậm hơn `main` 28 commit (kiểm 26/09/2026), nên branch tạm tách từ `main`.
   - **Why:** tách từ `dev` sẽ mất trang chủ hiện tại.
   - **How to apply:** dùng `ui/<mô-tả>` tách từ `origin/main`, không mở PR; báo Tech Lead đồng bộ `dev` với `main`. Khi `dev` đã kịp `main` thì quay lại tách từ `origin/dev`.
 - Repo chưa có husky, `.gitattributes` và branch protection theo §4 — việc của Tech Lead.
-- **Màu thương hiệu:** trang dùng `data-brand="nlh"` — vàng kim NhiLe Holdings `#d4a017` (bảng "Dark Premium" của NL-QA-NHILE-001). Token `--brand-nlh*` là **đề xuất v1.3.2** trên nhánh `design/brand-nlh-v1.3.2` của repo `NLH-CORE/design-system`, chờ chị Nhi duyệt qua Cổng Durov.
+- **Màu thương hiệu:** trang dùng `data-brand="nlh"` — vàng kim NhiLe Holdings `#d4a017` (bảng "Dark Premium" của NL-QA-NHILE-001). Token `--brand-nlh*` là **v1.3.2**, chị Nhi duyệt 26/09/2026 qua Cổng Durov (Tyna xác nhận); PR vào `main` của `NLH-CORE/design-system` từ nhánh `design/brand-nlh-v1.3.2`.
   - **Why:** bộ token v1.3.1 chỉ có Nedu · NhiLe Team · N-ơi · NQuoc; mặc vàng Nedu trên trang Holding là Red Flag "sai màu brand".
-  - **How to apply:** `nlh/nlh-tokens.css` phải là bản chép nguyên văn từ design-system. Không viết mã màu trong `index.html`. Nếu chị Nhi bác đề xuất → trả `data-brand` về giá trị chị chọn và chép lại token từ `main` của design-system.
+  - **How to apply:** `nlh/nlh-tokens.css` phải là bản chép nguyên văn từ design-system. Không viết mã màu trong `index.html`. Khi PR token đã merge, chép lại token từ `main` của design-system.
+- **Kiểm thử trên điện thoại thật:** mục Dịch vụ trên bản preview đã thử trên iPhone và Android — Tyna xác nhận 26/09/2026.
