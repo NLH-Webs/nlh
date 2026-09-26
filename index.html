@@ -255,9 +255,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
 /* Services: reuses .card inside .domain-grid — spacing/type via nlh-tokens only */
 #services{padding-top:0}
 .svc-grid{grid-template-columns:repeat(2,1fr)}
-.svc-edu{--c:var(--edu)}
-.svc-tech{--c:var(--tech)}
-.svc-mkt{--c:var(--content)}
+.svc-card{--c:var(--action)}  /* một điểm nhấn cho cả mục (khu vực public) — không mượn màu vùng/brand khác */
 .svc-card .svc-status{display:inline-flex;align-items:center;gap:var(--s-2);font-size:var(--size-caption);color:var(--muted);margin-bottom:var(--s-3)}
 .svc-card .svc-status::before{content:"";width:var(--s-2);height:var(--s-2);border-radius:var(--r-pill);background:var(--state-ok)}
 .svc-card .svc-unit{color:var(--muted);font-size:var(--size-caption);margin-bottom:var(--s-3)}
@@ -770,7 +768,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
               desc:{en:'Inspiration that reaches people every day.', vi:'Lan toả cảm hứng đến mọi người mỗi ngày.'},
               brands:[
                 {name:'NhiLe — YouTube', url:'https://www.youtube.com/@NHILE_SG', desc:{en:'An inspirational channel on living and growth — 200K+ subscribers over eight years.', vi:'Kênh truyền cảm hứng sống và phát triển — hơn 200K người theo dõi trong tám năm.'}},
-                {name:'N Digital Marketing', url:'https://mkt.nhi.sg/', desc:{en:'Marketing for the ecosystem and for outside businesses — a unit of NhiLe Pte. Ltd. (Singapore).', vi:'Marketing cho hệ sinh thái và cho doanh nghiệp bên ngoài — đơn vị của NhiLe Pte. Ltd. (Singapore).'}}
+                {name:'N Digital Marketing', url:'https://mkt.nhi.sg/', desc:{en:'Marketing for the ecosystem and for outside businesses — a unit of NhiLe Pte. Ltd. (Singapore).', vi:'Tiếp thị cho hệ sinh thái và cho doanh nghiệp bên ngoài — đơn vị của NhiLe Pte. Ltd. (Singapore).'}}
               ] },
     space:  { color:'var(--space)',
               stage:{en:'03 · Connect', vi:'03 · Kết nối'},
