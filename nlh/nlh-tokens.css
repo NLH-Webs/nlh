@@ -6,6 +6,9 @@
    v1.3: thêm 3 biến vai trò qua Cổng Durov, Nhi duyệt 18.09 — --scrim · --bg-media · --text-on-media
    v1.3.1: sửa 19 cặp rớt tương phản do máy kiểm bắt, Nhi duyệt 18.09 — --pub-* trỏ sang lớp vai trò (có bản nền tối);
            --nlh-ash sẫm một bậc; --brand-nlt-ink riêng cho chữ; khu vực create dùng --action-ink làm điểm nhấn
+   v1.3.2 (ĐỀ XUẤT — CHỜ NHI DUYỆT qua Cổng Durov, 26.09): thêm thương hiệu NhiLe Holdings `data-brand="nlh"`
+           — vàng kim #D4A017 theo bảng "NhiLe Holdings — Dark Premium" của chuẩn NL-QA-NHILE-001
+           (skill nhile-qa-standards / leaders-nlh). Trang Holding đang mặc vàng Nedu = Red Flag "sai màu brand".
    Kèm theo: NL-PROMPT-DESIGN-SYSTEM-001.md
 
    LUẬT: không portal nào được viết màu, cỡ chữ, khoảng cách,
@@ -50,6 +53,10 @@
   --brand-nquoc:       #0b6fb5;  /* xanh da trời NQuoc — Claude chọn, Nhi duyệt 18.09 */
   --brand-nquoc-on:    #ffffff;
   --brand-nquoc-ink:   #0b6fb5;
+  --brand-nlh:         #d4a017;  /* vàng kim NhiLe Holdings — bảng Dark Premium (NL-QA-NHILE-001). v1.3.2, chờ Nhi duyệt */
+  --brand-nlh-on:      #1d1d1f;  /* 7.1:1 trên #d4a017 */
+  --brand-nlh-ink:     #8a6508;  /* vàng kim sẫm để làm CHỮ trên nền sáng: 5.3:1 trên trắng, 4.9:1 trên --nlh-frost.
+                                    #b7860b của bảng màu chỉ đạt 3.3:1 nên không dùng làm chữ */
 
   /* Biến thể NỀN TỐI — luật Apple: mỗi màu có 2 bản.
      Màu đậm dùng làm CHỮ trên nền đen sẽ chìm, nên phải sáng lên. */
@@ -57,6 +64,7 @@
   --brand-nlt-dark:    #ff4d6d;  --brand-nlt-dark-on:   #1d1d1f;
   --brand-noi-dark:    #6ed3a3;  --brand-noi-dark-on:   #1d1d1f;
   --brand-nquoc-dark:  #6bbdf7;  --brand-nquoc-dark-on: #1d1d1f;
+  --brand-nlh-dark:    #d4a017;  --brand-nlh-dark-on:   #1d1d1f;  /* 8.8:1 trên nền đen */
 
   /* Chữ */
   --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
@@ -179,10 +187,12 @@
 [data-brand="nlt"]   { --action: var(--brand-nlt);   --action-on: var(--brand-nlt-on);   --action-ink: var(--brand-nlt-ink); }
 [data-brand="noi"]   { --action: var(--brand-noi);   --action-on: var(--brand-noi-on);   --action-ink: var(--brand-noi-ink); }
 [data-brand="nquoc"] { --action: var(--brand-nquoc); --action-on: var(--brand-nquoc-on); --action-ink: var(--brand-nquoc-ink); }
+[data-brand="nlh"]   { --action: var(--brand-nlh);   --action-on: var(--brand-nlh-on);   --action-ink: var(--brand-nlh-ink); }
 [data-theme="dark"][data-brand="nedu"]  { --action: var(--brand-nedu-dark);  --action-on: var(--brand-nedu-dark-on);  --action-ink: var(--brand-nedu-dark); }
 [data-theme="dark"][data-brand="nlt"]   { --action: var(--brand-nlt-dark);   --action-on: var(--brand-nlt-dark-on);   --action-ink: var(--brand-nlt-dark); }
 [data-theme="dark"][data-brand="noi"]   { --action: var(--brand-noi-dark);   --action-on: var(--brand-noi-dark-on);   --action-ink: var(--brand-noi-dark); }
 [data-theme="dark"][data-brand="nquoc"] { --action: var(--brand-nquoc-dark); --action-on: var(--brand-nquoc-dark-on); --action-ink: var(--brand-nquoc-dark); }
+[data-theme="dark"][data-brand="nlh"]   { --action: var(--brand-nlh-dark);   --action-on: var(--brand-nlh-dark-on);   --action-ink: var(--brand-nlh-dark); }
 
 /* ------------------------------------------------------------
    LỚP 2.5 — KHU VỰC (theo việc người dùng đang làm, không theo brand)

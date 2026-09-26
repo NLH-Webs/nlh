@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-area="public" data-brand="nedu">
+<html lang="en" data-theme="dark" data-area="public" data-brand="nlh">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -252,6 +252,24 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
 .card .brands span,.card .brands a{font-size:var(--size-caption);color:var(--text);background:color-mix(in srgb, var(--text-primary) 5%, transparent);border:1px solid var(--hair);padding:5px 11px;border-radius:8px;font-weight:500}
 .card .brands a{text-decoration:none;cursor:pointer;transition:border-color .22s var(--ease),background .22s var(--ease),color .22s var(--ease)}
 .card .brands a:hover{border-color:var(--c);background:color-mix(in srgb, var(--text-primary) 9%, transparent);color:var(--text-primary)}
+/* Services: reuses .card inside .domain-grid — spacing/type via nlh-tokens only */
+#services{padding-top:0}
+.svc-grid{grid-template-columns:repeat(2,1fr)}
+.svc-edu{--c:var(--edu)}
+.svc-tech{--c:var(--tech)}
+.svc-mkt{--c:var(--content)}
+.svc-card .svc-status{display:inline-flex;align-items:center;gap:var(--s-2);font-size:var(--size-caption);color:var(--muted);margin-bottom:var(--s-3)}
+.svc-card .svc-status::before{content:"";width:var(--s-2);height:var(--s-2);border-radius:var(--r-pill);background:var(--state-ok)}
+.svc-card .svc-unit{color:var(--muted);font-size:var(--size-caption);margin-bottom:var(--s-3)}
+.svc-card p{min-height:0}
+.svc-card .svc-out{border-top:1px solid var(--hair);padding-top:var(--s-4);margin:0;color:var(--text)}
+.svc-card .brands{border-top:0;padding-top:var(--s-3)}
+.svc-card .brands a{display:inline-flex;align-items:center;min-height:var(--tap-min)}
+.svc-foot{text-align:center;margin-top:var(--s-6)}
+.svc-foot p{color:var(--muted);font-size:var(--size-small);margin:0 0 var(--s-4)}
+.svc-foot .svc-mail{display:block;margin-top:var(--s-3);color:var(--muted);font-size:var(--size-caption)}
+.svc-foot .svc-privacy{font-size:var(--size-caption);color:var(--text-tertiary);max-width:60ch;margin:var(--s-2) auto 0}
+.svc-foot .svc-mail a{display:inline-flex;align-items:center;min-height:var(--tap-min);color:var(--action-ink)}
 
 /* ============ PROOF ============ */
 .proof{background:linear-gradient(180deg,transparent,color-mix(in srgb, var(--bg-raised) 40%, transparent),transparent)}
@@ -357,6 +375,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
       <a href="#ecosystem" data-en="Ecosystem" data-vi="Hệ sinh thái">Ecosystem</a>
       <a href="#journey" data-en="Journey" data-vi="Hành trình">Journey</a>
       <a href="#proof" data-en="Proof" data-vi="Minh chứng">Proof</a>
+      <a href="#services" data-en="Services" data-vi="Dịch vụ">Services</a>
       <a href="#contact" data-en="Contact" data-vi="Liên hệ">Contact</a>
     </nav>
     <div class="nav-cta">
@@ -623,6 +642,51 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
   </div>
 </section>
 
+<!-- ============ SERVICES ============ -->
+<!-- Nguồn nội dung: bộ claude-services (NL-PRD-CLAUDESVC-001 v0.4) + mkt.nhi.sg. Pháp nhân: NHILE HOLDING JSC, MST 0402230476. -->
+<section class="section" id="services" aria-labelledby="services-h">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-en="Services" data-vi="Dịch vụ">Services</span>
+      <h2 id="services-h" data-en="Four services, one contact" data-vi="Bốn mảng dịch vụ, một đầu mối">Four services, one contact</h2>
+      <p data-en="NhiLe trains your team, sets Claude up in your workflows and runs them with you every month. N Digital Marketing takes on your marketing end to end. Every request goes to one email address. Claude is the AI model made by Anthropic." data-vi="NhiLe đào tạo đội ngũ, đưa Claude vào quy trình làm việc và vận hành cùng bạn mỗi tháng. N Digital Marketing lo trọn việc tiếp thị. Mọi yêu cầu gửi về một địa chỉ email. Claude là mô hình AI do Anthropic phát triển.">NhiLe trains your team, sets Claude up in your workflows and runs them with you every month. N Digital Marketing takes on your marketing end to end. Every request goes to one email address. Claude is the AI model made by Anthropic.</p>
+    </div>
+    <div class="domain-grid svc-grid">
+      <article class="card svc-card svc-edu reveal" id="edtech">
+        <span class="svc-status" data-en="Open" data-vi="Đang nhận">Open</span>
+        <h3 data-en="EdTech &amp; Training" data-vi="Công nghệ giáo dục &amp; Đào tạo">EdTech &amp; Training</h3>
+        <p data-en="Your team learns to use Claude well and safely, hands-on, on its own tasks." data-vi="Đội của bạn học dùng Claude đúng và an toàn, thực hành trên chính việc của mình.">Your team learns to use Claude well and safely, hands-on, on its own tasks.</p>
+        <p class="svc-out" data-html data-en="<b>You get:</b> a team that uses Claude the right way, an internal course, and a shared prompt library." data-vi="<b>Bạn nhận:</b> đội dùng Claude đúng cách, một khoá học nội bộ, và thư viện câu lệnh dùng chung."><b>You get:</b> a team that uses Claude the right way, an internal course, and a shared prompt library.</p>
+      </article>
+      <article class="card svc-card svc-tech reveal d1" id="setup">
+        <span class="svc-status" data-en="Open" data-vi="Đang nhận">Open</span>
+        <h3 data-en="Setup &amp; Implementation" data-vi="Triển khai">Setup &amp; Implementation</h3>
+        <p data-en="One high-value workflow, from idea to daily use, on your own Claude account." data-vi="Một quy trình giá trị cao, từ ý tưởng tới dùng hằng ngày, trên chính tài khoản Claude của bạn.">One high-value workflow, from idea to daily use, on your own Claude account.</p>
+        <p class="svc-out" data-html data-en="<b>You get:</b> a workflow in daily use, its documentation and a before-and-after measurement." data-vi="<b>Bạn nhận:</b> một quy trình dùng hằng ngày, tài liệu vận hành và số đo trước–sau."><b>You get:</b> a workflow in daily use, its documentation and a before-and-after measurement.</p>
+      </article>
+      <article class="card svc-card svc-tech reveal" id="operations">
+        <span class="svc-status" data-en="Open" data-vi="Đang nhận">Open</span>
+        <h3 data-en="Monthly Operations" data-vi="Vận hành hằng tháng">Monthly Operations</h3>
+        <p data-en="We keep your Claude workflows working well as models, people and needs change." data-vi="NhiLe giữ cho các quy trình Claude của bạn chạy tốt khi mô hình, con người và nhu cầu thay đổi.">We keep your Claude workflows working well as models, people and needs change.</p>
+        <p class="svc-out" data-html data-en="<b>You get:</b> a monthly report and one named contact who knows your setup." data-vi="<b>Bạn nhận:</b> báo cáo hằng tháng và một đầu mối cố định hiểu rõ cách bạn đang dùng."><b>You get:</b> a monthly report and one named contact who knows your setup.</p>
+      </article>
+      <article class="card svc-card svc-mkt reveal d1" id="marketing">
+        <span class="svc-unit" data-en="N Digital Marketing · a unit of NhiLe Pte. Ltd." data-vi="N Digital Marketing · đơn vị của NhiLe Pte. Ltd.">N Digital Marketing · a unit of NhiLe Pte. Ltd.</span>
+        <h3 data-en="Full-service Marketing" data-vi="Tiếp thị trọn gói">Full-service Marketing</h3>
+        <p data-en="Brand, content, social media and campaigns with clear reporting, from the team behind a 200,000-subscriber channel." data-vi="Thương hiệu, nội dung, mạng xã hội và chiến dịch có báo cáo rõ ràng, từ đội ngũ đứng sau kênh 200.000 người theo dõi.">Brand, content, social media and campaigns with clear reporting, from the team behind a 200,000-subscriber channel.</p>
+        <p class="svc-out" data-html data-en="<b>You get:</b> one team managing your marketing, and reports that show what works." data-vi="<b>Bạn nhận:</b> một đội lo trọn việc tiếp thị, và báo cáo cho thấy điều gì hiệu quả."><b>You get:</b> one team managing your marketing, and reports that show what works.</p>
+        <div class="brands"><a href="https://mkt.nhi.sg/" target="_blank" rel="noopener">mkt.nhi.sg ↗</a></div>
+      </article>
+    </div>
+    <div class="svc-foot reveal">
+      <p data-en="Prices are quoted after the discovery call." data-vi="Giá báo sau buổi trao đổi.">Prices are quoted after the discovery call.</p>
+      <a class="btn btn-ghost" id="svcMailBtn" href="mailto:contact@nhi.sg" data-en="Email us to book a discovery call" data-vi="Gửi email đặt lịch">Email us to book a discovery call</a>
+      <span class="svc-mail"><a href="mailto:contact@nhi.sg">contact@nhi.sg</a></span>
+      <p class="svc-privacy" data-en="Your email is used only to reply to your request. To have it deleted, write to contact@nhi.sg." data-vi="Email của bạn chỉ dùng để trả lời yêu cầu này. Muốn xoá, gửi email tới contact@nhi.sg.">Your email is used only to reply to your request. To have it deleted, write to contact@nhi.sg.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============ CTA ============ -->
 <section class="section" id="cta" style="padding-top:0">
   <div class="cta-band reveal">
@@ -668,6 +732,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
       <div class="fcol" id="contact">
         <h5 data-en="Contact" data-vi="Liên hệ">Contact</h5>
         <a href="mailto:contact@nhi.sg">contact@nhi.sg</a>
+        <a href="#services" data-en="Services" data-vi="Dịch vụ">Services</a>
         <a href="https://maps.app.goo.gl/BUheceBhrwjbcRUV9" target="_blank" rel="noopener" data-en="View address on map" data-vi="Xem địa chỉ trên bản đồ">View address on map</a>
         <a href="https://www.youtube.com/@NHILE_SG" target="_blank" rel="noopener" data-en="Story" data-vi="Câu chuyện">Story</a>
         <a href="https://nhi.sg/about" target="_blank" rel="noopener" data-en="Founder · Nhi Le" data-vi="Nhà sáng lập · Nhi Lê">Founder · Nhi Le</a>
@@ -751,6 +816,17 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
           + '• Mong muốn hợp tác:\n\n'
           + 'Rất mong được kết nối.\n\n'
           + 'Trân trọng,'
+    }
+  };
+  /* email soạn sẵn cho mục Dịch vụ — chữ theo 03-ui-spec của NL-PRD-CLAUDESVC-001 */
+  var SVC_MAIL = {
+    en: {
+      su: 'Services enquiry',
+      body: 'Hello NhiLe team,\n\nOur company: \nThe workflow that is slow today: \nWho does it: \nHours lost per week (rough): \n\nThank you.'
+    },
+    vi: {
+      su: 'Hỏi dịch vụ',
+      body: 'Chào NhiLe,\n\nCông ty: \nQuy trình đang chậm: \nAi đang làm việc đó: \nMỗi tuần mất khoảng bao nhiêu giờ: \n\nCảm ơn.'
     }
   };
 
@@ -872,7 +948,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
   }
 
   /* ---------- nav active state ---------- */
-  var sections = ['hero','ecosystem','journey','proof','cta'];
+  var sections = ['hero','ecosystem','journey','proof','services','cta'];
   var links = document.querySelectorAll('.navlinks a');
   function mapLink(id){
     if(id==='hero') return null;
@@ -929,6 +1005,15 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
         + '&to=' + encodeURIComponent(PARTNER_EMAIL)
         + '&su=' + encodeURIComponent(p.su)
         + '&body=' + encodeURIComponent(p.body);
+    }
+
+    /* nút "Gửi email đặt lịch" ở mục Dịch vụ: mở email soạn sẵn theo ngôn ngữ */
+    var svcMailBtn = document.getElementById('svcMailBtn');
+    if(svcMailBtn){
+      var sm = SVC_MAIL[lang] || SVC_MAIL.en;
+      svcMailBtn.href = 'mailto:' + PARTNER_EMAIL
+        + '?subject=' + encodeURIComponent(sm.su)
+        + '&body=' + encodeURIComponent(sm.body);
     }
   }
   var langOpts = document.querySelectorAll('.lang-opt');
