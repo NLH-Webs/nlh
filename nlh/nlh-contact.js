@@ -8,11 +8,14 @@
  *                                   country, topic, org, bestTime, message. Name is always shown,
  *                                   the consent box always comes last. Keep it to 4 boxes.
  *   compact                         short for fields="name,contact,channel" (4 boxes with consent).
+ *   compact channels                short for fields="name,contact,channel,message" (nlf.sg).
+ *   ok-title / ok-body (-en / -vi)  thank-you text; ok-body may use {id}, {reply}, {channel}.
  *   reply-time-en / reply-time-vi   the reply promise, e.g. "24 hours" / "24 giờ". Default
  *                                   "1–2 working days". Set 24 hours only when the person who
  *                                   receives this site's leads has confirmed it in Nếp.
  *   privacy-url                     link shown in the consent sentence.
- *   next-href + next-en / next-vi   one next step on the thank-you screen (e.g. a demo).
+ *   next-href + next-en / next-vi   one next step on the thank-you screen (e.g. a demo);
+ *     (or next-label)               next-label works for both languages.
  *   submit-en / submit-vi           button label.
  *   lead-en / lead-vi               line under the heading.
  *   message-en / message-vi         label of the message box.
@@ -176,7 +179,7 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
       this.root.appendChild(el('style', { text: CSS }));
       var card = el('div', { class: 'card' });
       if (!this.hasAttribute('no-heading')) {
-        card.appendChild(el('h2', { text: this.opt('heading', this.getAttribute('heading') || t.title) }));
+        card.appendChild(el('h2', { text: this.opt('heading', this.getAttribute('heading') || t.title) })); // vá nlh: heading-en/vi
         card.appendChild(el('p', { class: 'lead', text: this.opt('lead', t.lead).replace('{reply}', this.replyTime()) }));
       }
       var f = el('form', { novalidate: '' });
@@ -201,7 +204,7 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
       var i = this.in;
       var msgLabel = this.opt('message', t.message);
       // fields / compact: choose the boxes. No attribute = the full form, as before.
-      var list = this.getAttribute('fields') || (this.hasAttribute('compact') ? 'name,contact,channel' : '');
+      var list = this.getAttribute('fields') || (this.hasAttribute('compact') ? (this.hasAttribute('channels') ? 'name,contact,channel,message' : 'name,contact,channel') : '');
       this.fields = list ? list.split(',').map(function (k) { return k.trim(); }).filter(Boolean) : null;
       this.channelShown = false;
       if (this.fields) {
@@ -315,11 +318,20 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
     }
 
     done(id, v) {
-      var t = this.t;
-      var kids = [el('h3', { text: t.okTitle }), el('p', { text: t.okBody.replace('{id}', id || '').replace('{reply}', this.replyTime()).replace('{channel}', (v && v.channel) || 'Email') })];
-      var next = this.getAttribute('next-href'), nextText = this.opt('next', '');
-      if (next && nextText) kids.push(el('div', { class: 'actions' }, [el('a', { class: 'btn primary', href: next, text: nextText })]));
-      var box = el('div', { class: 'status', role: 'status', tabindex: '-1' }, kids);
+      var t = this, tt = this.t;
+      var fill = function (txt) { return txt.replace('{id}', id || '').replace('{reply}', t.replyTime()).replace('{channel}', (v && v.channel) || 'Email'); };
+      var kids = [
+        el('h3', { text: fill(this.opt('ok-title', this.getAttribute('ok-title') || tt.okTitle)) }),
+        el('p', { text: fill(this.opt('ok-body', this.getAttribute('ok-body') || tt.okBody)) })
+      ];
+      var next = this.getAttribute('next-href'), nextText = this.opt('next', this.getAttribute('next-label') || '');
+      if (next && nextText) {
+        var away = /^https?:/.test(next) && next.indexOf(location.origin) !== 0;
+        var a = el('a', { class: 'btn primary', href: next, text: nextText, 'data-track': 'cta', 'data-cta': (this.getAttribute('data-cta') || 'contact-form') + '_next' });
+        if (away) { a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener'); }
+        kids.push(el('div', { class: 'actions' }, [a]));
+      }
+      var box = el('div', { class: 'status', role: 'status', tabindex: '-1' }, kids); // vá nlh: con trỏ vào màn cảm ơn
       this.form.replaceWith(box);
       try { box.focus(); } catch (e) {}
       try { window.dispatchEvent(new CustomEvent('nlh-lead', { detail: { site: this.site, id: id } })); } catch (e) {}
