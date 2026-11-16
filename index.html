@@ -167,9 +167,10 @@ img{max-width:100%}
 .um-unit{position:relative;display:flex;flex-direction:column;align-items:center;gap:var(--s-2);padding:var(--s-4) var(--s-3);border:1px solid var(--hair);border-radius:var(--r-md);background:var(--surface);color:var(--c)}
 .um-unit::before{content:"";position:absolute;left:50%;top:calc(-1 * var(--s-6,32px) / 2);height:calc(var(--s-6,32px) / 2);width:1px;background:var(--hair-2)}
 .um-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none;border:1px solid var(--hair-2)}
-.proof-photo{margin:var(--s-6,32px) auto 0;max-width:640px}
-.proof-photo img{display:block;width:100%;height:auto;border-radius:var(--r-md)}
-.proof-photo figcaption{margin-top:var(--s-2);color:var(--muted);font-size:var(--size-small);text-align:center}
+.proof-photos{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4);max-width:560px;margin:var(--s-6,32px) auto}
+.proof-photos figure{margin:0}
+.proof-photos img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-md)}
+.proof-photos figcaption{margin-top:var(--s-2);color:var(--muted);font-size:var(--size-small);text-align:center}
 .um-unit b{color:var(--text);font-size:var(--size-body);font-weight:600;line-height:1.3}
 .um-unit small{color:var(--muted);font-size:var(--size-small);line-height:1.4}
 @media (prefers-reduced-motion:no-preference){
@@ -663,7 +664,10 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
       <h2 data-en="A community of 5,000+ members, built in public" data-vi="Một cộng đồng hơn 5.000 thành viên, xây công khai">A community of 5,000+ members, built in public</h2>
       <p data-en="It started with one video in May 2019, a day in the life of a working mother. Since then, 1,200+ people have paid to learn with N-Education, and a community has grown that keeps finding one another." data-vi="Bắt đầu từ một video tháng 5/2019, một ngày của người mẹ đi làm. Từ đó, hơn 1.200 người đã trả phí học cùng N-Education, và một cộng đồng lớn dần, vẫn tìm thấy nhau.">It started with one video in May 2019, a day in the life of a working mother. Since then, 1,200+ people have paid to learn with N-Education, and a community has grown that keeps finding one another.</p>
     </div>
-    <figure class="proof-photo reveal"><img src="/img/nlh-education-la-chinh-minh-4.webp" width="640" height="360" alt="Nhi Le at the Là Chính Mình 4 event" loading="lazy" decoding="async"><figcaption data-en="Nhi Le at Là Chính Mình 4, March 2026" data-vi="Chị Nhi tại Là Chính Mình 4, tháng 3/2026">Nhi Le at Là Chính Mình 4, March 2026</figcaption></figure>
+    <div class="proof-photos reveal">
+      <figure><img src="/img/nlh-nut-bac-youtube-2022.webp" width="480" height="600" alt="Nhi Le holding the YouTube Silver Play Button for 100,000 subscribers" loading="lazy" decoding="async"><figcaption data-en="YouTube Silver Button, 2022" data-vi="Nút bạc YouTube, 2022">YouTube Silver Button, 2022</figcaption></figure>
+      <figure><img src="/img/nlh-la-chinh-minh-4.webp" width="480" height="600" alt="Nhi Le at the Là Chính Mình 4 event" loading="lazy" decoding="async"><figcaption data-en="Là Chính Mình 4, March 2026" data-vi="Là Chính Mình 4, tháng 3/2026">Là Chính Mình 4, March 2026</figcaption></figure>
+    </div>
     <div class="stat-row">
       <div class="stat reveal"><div class="num" data-to="207" data-suffix-en="K" data-suffix-vi="K">207K</div><div class="lbl" data-en="YouTube subscribers" data-vi="Người đăng ký YouTube">YouTube subscribers</div></div>
       <div class="stat reveal d1"><div class="num" data-to="5000" data-sep="1" data-suffix-en="+" data-suffix-vi="+">5,000+</div><div class="lbl" data-en="Community members" data-vi="Thành viên cộng đồng">Community members</div></div>
