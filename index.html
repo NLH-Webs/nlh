@@ -42,11 +42,13 @@
   --maxw:var(--container);
 
   /* Category colours of the ecosystem diagram — data colours, not UI roles. */
-  --edu:var(--action);
-  --content:var(--brand-nlt-dark);
-  --tech:var(--state-warn);
-  --space:var(--brand-noi-dark);
-  --care:var(--area-care, var(--brand-nlt-dark));
+  /* Brand Guide v3.0 (chị Nhi chốt 16/11/2026): vàng kim và đỏ thẫm luân phiên;
+     vàng sáng (--action) chỉ dành cho nút chính. */
+  --edu:var(--brand-nlh-gold);
+  --content:var(--brand-nlh-red-dark);
+  --tech:var(--text-secondary);
+  --space:var(--brand-nlh-gold);
+  --care:var(--brand-nlh-red-dark);
 }
 
 *{box-sizing:border-box}
@@ -66,7 +68,7 @@ body::before{
   content:"";
   position:fixed; inset:0; z-index:-2;
   background:
-    radial-gradient(1100px 700px at 78% -8%, color-mix(in srgb, var(--action) 14%, transparent), transparent 60%),
+    radial-gradient(1100px 700px at 78% -8%, color-mix(in srgb, var(--brand-nlh-red) 22%, transparent), transparent 60%),
     radial-gradient(900px 620px at 8% 12%, color-mix(in srgb, var(--space) 8%, transparent), transparent 60%),
     radial-gradient(1000px 800px at 50% 108%, color-mix(in srgb, var(--content) 7%, transparent), transparent 60%),
     linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 55%, var(--bg) 100%);
@@ -130,15 +132,15 @@ img{max-width:100%}
   color:var(--muted);background:transparent;border:0;cursor:pointer;padding:6px 11px;border-radius:var(--r-pill);
   line-height:1;transition:color .25s var(--ease),background .25s var(--ease),transform .25s var(--ease)}
 .lang-opt:hover{color:var(--text)}
-.lang-opt.is-active{background:var(--action);color:var(--action-on);
-  box-shadow:0 4px 14px color-mix(in srgb, var(--action) 28%, transparent)}
+.lang-opt.is-active{background:var(--brand-nlh-gold);color:var(--brand-nlh-on);
+  box-shadow:0 4px 14px color-mix(in srgb, var(--brand-nlh-gold) 28%, transparent)}
 .lang-opt:focus-visible{outline:2px solid var(--edu);outline-offset:2px}
 .menu-btn{display:none}
 
 /* ============ HERO ============ */
 .hero{position:relative;padding:96px 0 60px;text-align:center}
 .hero-glow{position:absolute;left:50%;top:120px;width:min(680px,100%);height:420px;transform:translateX(-50%);
-  background:radial-gradient(closest-side,color-mix(in srgb, var(--action) 22%, transparent),transparent 70%);filter:blur(8px);z-index:0;pointer-events:none}
+  background:radial-gradient(closest-side,color-mix(in srgb, var(--brand-nlh-red) 30%, transparent),transparent 70%);filter:blur(8px);z-index:0;pointer-events:none}
 .hero .wrap{position:relative;z-index:1}
 .hero .eyebrow{margin-bottom:26px}
 .hero h1{
@@ -259,7 +261,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
 /* Services: reuses .card inside .domain-grid — spacing/type via nlh-tokens only */
 #services{padding-top:0}
 .svc-grid{grid-template-columns:repeat(2,1fr)}
-.svc-card{--c:var(--action)}  /* một điểm nhấn cho cả mục (khu vực public) — không mượn màu vùng/brand khác */
+.svc-card{--c:var(--brand-nlh-red)}  /* một điểm nhấn cho cả mục (khu vực public) — không mượn màu vùng/brand khác */
 .svc-card .svc-status{display:inline-flex;align-items:center;gap:var(--s-2);font-size:var(--size-caption);color:var(--muted);margin-bottom:var(--s-3)}
 .svc-card .svc-status::before{content:"";width:var(--s-2);height:var(--s-2);border-radius:var(--r-pill);background:var(--state-ok)}
 .svc-card .svc-unit{color:var(--muted);font-size:var(--size-caption);margin-bottom:var(--s-3)}
@@ -281,7 +283,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
 .stat{text-align:center;padding:28px 14px;border:1px solid var(--hair);border-radius:var(--r-md);
   background:linear-gradient(180deg,var(--surface),transparent)}
 .stat .num{font-family:var(--font-display);font-weight:700;font-size:var(--size-hero);line-height:1;
-  background:linear-gradient(160deg,var(--text-primary),var(--action));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  background:linear-gradient(160deg,var(--text-primary),var(--brand-nlh-gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .proof-src{text-align:center;color:var(--faint);font-size:var(--size-caption);margin:var(--s-4) auto 0;max-width:720px}
 .stat .lbl{color:var(--muted);font-size:var(--size-small);margin-top:12px;letter-spacing:.02em}
 .proof-foot{display:flex;align-items:center;justify-content:center;gap:30px;flex-wrap:wrap;margin-top:48px;
@@ -298,7 +300,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
 /* ============ CTA ============ */
 .cta-band{position:relative;text-align:center;padding:84px 32px;max-width:var(--maxw);margin:0 auto;
   border:1px solid var(--hair);border-radius:var(--r-lg);overflow:hidden;
-  background:radial-gradient(900px 360px at 50% -30%,color-mix(in srgb, var(--action) 18%, transparent),transparent 70%),linear-gradient(180deg,var(--surface),var(--bg-2))}
+  background:radial-gradient(900px 360px at 50% -30%,color-mix(in srgb, var(--brand-nlh-red) 26%, transparent),transparent 70%),linear-gradient(180deg,var(--surface),var(--bg-2))}
 .cta-band h2{font-family:var(--font-display);font-weight:700;font-size:var(--size-hero);margin:0 auto;max-width:18ch;line-height:1.08;text-wrap:balance}
 .cta-band p{color:var(--muted);max-width:54ch;margin:20px auto 34px}
 
