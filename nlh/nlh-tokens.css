@@ -53,10 +53,18 @@
   --brand-nquoc:       #0b6fb5;  /* xanh da trời NQuoc — Claude chọn, Nhi duyệt 18.09 */
   --brand-nquoc-on:    #ffffff;
   --brand-nquoc-ink:   #0b6fb5;
-  --brand-nlh:         #d4a017;  /* vàng kim NhiLe Holdings — bảng Dark Premium (NL-QA-NHILE-001). v1.3.2, Nhi duyệt 26.09 */
-  --brand-nlh-on:      #1d1d1f;  /* 7.1:1 trên #d4a017 */
-  --brand-nlh-ink:     #8a6508;  /* vàng kim sẫm để làm CHỮ trên nền sáng: 5.3:1 trên trắng, 4.9:1 trên --nlh-frost.
-                                    #b7860b của bảng màu chỉ đạt 3.3:1 nên không dùng làm chữ */
+  /* NhiLe Holding theo Brand Guide v3.0 — chị Nhi chốt 16/11/2026 cho mọi web công khai.
+     Thay vàng #d4a017 của v1.3.2. Tỉ lệ 60 đen · 20 đỏ thẫm · 20 vàng; không đỏ tươi;
+     không chữ vàng trên nền đỏ; vàng sáng CHỈ dành cho nút chính. */
+  --brand-nlh-black:   #0D0D0D;  /* Đen — nền */
+  --brand-nlh-red:     #8B1A1A;  /* Đỏ thẫm — mảng, viền, thanh; KHÔNG làm chữ trên nền tối (2.1:1) */
+  --brand-nlh-red-dark:#C79290;  /* đỏ thẫm pha kem, để làm CHỮ/nét trên nền đen: 7.4:1 trên #0D0D0D */
+  --brand-nlh-gold:    #B7860B;  /* Vàng kim — điểm nhấn, chữ nhấn trên nền đen: 6.0:1 trên #0D0D0D */
+  --brand-nlh-cta:     #E8C070;  /* Vàng sáng — chỉ nút chính */
+  --brand-nlh-cream:   #F8F4EE;  /* Kem — chữ trên nền đen (18:1), nền sáng */
+  --brand-nlh:         #B7860B;
+  --brand-nlh-on:      #0D0D0D;  /* 6.0:1 trên #B7860B */
+  --brand-nlh-ink:     #8B1A1A;  /* chữ thương hiệu trên nền sáng: 9.6:1 trên trắng (#B7860B chỉ 3.3:1) */
 
   /* Biến thể NỀN TỐI — luật Apple: mỗi màu có 2 bản.
      Màu đậm dùng làm CHỮ trên nền đen sẽ chìm, nên phải sáng lên. */
@@ -64,7 +72,7 @@
   --brand-nlt-dark:    #ff4d6d;  --brand-nlt-dark-on:   #1d1d1f;
   --brand-noi-dark:    #6ed3a3;  --brand-noi-dark-on:   #1d1d1f;
   --brand-nquoc-dark:  #6bbdf7;  --brand-nquoc-dark-on: #1d1d1f;
-  --brand-nlh-dark:    #d4a017;  --brand-nlh-dark-on:   #1d1d1f;  /* 8.8:1 trên nền đen */
+  --brand-nlh-dark:    #E8C070;  --brand-nlh-dark-on:   #0D0D0D;  /* nút chính vàng sáng, chữ đen 11.6:1 */
 
   /* Chữ */
   --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
@@ -192,7 +200,9 @@
 [data-theme="dark"][data-brand="nlt"]   { --action: var(--brand-nlt-dark);   --action-on: var(--brand-nlt-dark-on);   --action-ink: var(--brand-nlt-dark); }
 [data-theme="dark"][data-brand="noi"]   { --action: var(--brand-noi-dark);   --action-on: var(--brand-noi-dark-on);   --action-ink: var(--brand-noi-dark); }
 [data-theme="dark"][data-brand="nquoc"] { --action: var(--brand-nquoc-dark); --action-on: var(--brand-nquoc-dark-on); --action-ink: var(--brand-nquoc-dark); }
-[data-theme="dark"][data-brand="nlh"]   { --action: var(--brand-nlh-dark);   --action-on: var(--brand-nlh-dark-on);   --action-ink: var(--brand-nlh-dark); }
+[data-theme="dark"][data-brand="nlh"]   { --action: var(--brand-nlh-dark);   --action-on: var(--brand-nlh-dark-on);   --action-ink: var(--brand-nlh-gold);
+  /* Brand Guide v3.0: nền Đen #0D0D0D, chữ Kem */
+  --bg-base: var(--brand-nlh-black); --text-primary: var(--brand-nlh-cream); }
 
 /* ------------------------------------------------------------
    LỚP 2.5 — KHU VỰC (theo việc người dùng đang làm, không theo brand)

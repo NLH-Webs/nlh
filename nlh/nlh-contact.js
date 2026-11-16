@@ -146,7 +146,7 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
       this.root.appendChild(el('style', { text: CSS }));
       var card = el('div', { class: 'card' });
       if (!this.hasAttribute('no-heading')) {
-        card.appendChild(el('h2', { text: this.getAttribute('heading') || t.title }));
+        card.appendChild(el('h2', { text: this.getAttribute('heading-' + this.lg) || this.getAttribute('heading') || t.title }));
         card.appendChild(el('p', { class: 'lead', text: t.lead }));
       }
       var f = el('form', { novalidate: '' });
@@ -167,6 +167,15 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
         website: el('input', { name: 'website', tabindex: '-1', autocomplete: 'off' })
       };
       var i = this.in;
+      // compact: chỉ 3 ô (tên, email, nội dung) + ô đồng ý, cho trang cần form ngắn
+      this.compact = this.hasAttribute('compact');
+      if (this.compact) {
+        i.email.setAttribute('required', '');
+        i.topic = null;
+        f.appendChild(field(t.name + ' *', i.name, 'full'));
+        f.appendChild(field(t.email + ' *', i.email, 'full'));
+        f.appendChild(field(t.message, i.message, 'full'));
+      } else {
       f.appendChild(field(t.name + ' *', i.name, 'full'));
       f.appendChild(field(t.email, i.email));
       f.appendChild(el('label', {}, [document.createTextNode(t.phone), el('div', { class: 'phone' }, [i.code, i.phone])]));
@@ -177,6 +186,7 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
       f.appendChild(field(t.org, i.org));
       f.appendChild(field(t.bestTime, i.bestTime));
       f.appendChild(field(t.message, i.message, 'full'));
+      }
       f.appendChild(el('label', { class: 'consent full' }, [i.consent, document.createTextNode(t.consent)]));
       f.appendChild(el('div', { class: 'hp', 'aria-hidden': 'true' }, [i.website]));
       this.errEl = el('p', { class: 'err', role: 'alert' });
@@ -205,7 +215,7 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
         consent: i.consent.checked, website: i.website.value,
         timeZone: (Intl.DateTimeFormat().resolvedOptions().timeZone || ''),
         page: location.href, referrer: ss('referrer'),
-        utm_source: ss('utm_source'), utm_medium: ss('utm_medium'), utm_campaign: ss('utm_campaign'),
+        cta: ss('cta'), utm_source: ss('utm_source'), utm_medium: ss('utm_medium'), utm_campaign: ss('utm_campaign'),
         userAgent: navigator.userAgent, elapsedMs: Date.now() - this.startedAt
       };
     }
@@ -213,6 +223,7 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
     validate(v) {
       var t = this.t;
       if (!v.name) return t.needName;
+      if (this.compact && !v.email) return t.badEmail;
       if (!v.email && !this.in.phone.value.trim()) return t.needContact;
       if (v.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email)) return t.badEmail;
       if (!v.consent) return t.needConsent;
@@ -253,9 +264,14 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
       var body = [
         t.name + ': ' + v.name, t.email + ': ' + v.email, t.phone + ': ' + v.phone,
         t.channel + ': ' + v.channel, t.country + ': ' + v.country, t.topic + ': ' + v.topic,
-        t.org + ': ' + v.organisation, t.bestTime + ': ' + v.bestTime, '', v.message, '', '— ' + v.site + ' · ' + v.page
+        t.org + ': ' + v.organisation, t.bestTime + ': ' + v.bestTime, '', v.message, '',
+        '— ' + v.site + ' · ' + v.page,
+        'source: ' + [v.referrer, v.utm_source, v.utm_medium, v.utm_campaign, v.cta].filter(Boolean).join(' · ')
       ].join('\n');
-      var href = 'mailto:' + TEAM_EMAIL + '?subject=' + encodeURIComponent('[Lead] ' + v.site + ' · ' + (v.topic || '') + ' · ' + v.name) + '&body=' + encodeURIComponent(body);
+      // Subject carries only where the note came from: "[<site>] <data-cta>". The visitor's name
+      // stays in the body, never in the subject (inbox previews, filters and logs show subjects).
+      var cta = this.getAttribute('data-cta') || 'contact-form';
+      var href = 'mailto:' + TEAM_EMAIL + '?subject=' + encodeURIComponent('[' + v.site + '] ' + cta) + '&body=' + encodeURIComponent(body);
       var box = el('div', { class: 'status full', role: 'alert' }, [
         el('h3', { text: t.errTitle }), el('p', { text: t.errBody }),
         el('div', { class: 'actions' }, [el('a', { class: 'btn primary', href: href, text: t.errMail })])
