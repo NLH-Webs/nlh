@@ -146,7 +146,7 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
       this.root.appendChild(el('style', { text: CSS }));
       var card = el('div', { class: 'card' });
       if (!this.hasAttribute('no-heading')) {
-        card.appendChild(el('h2', { text: this.getAttribute('heading') || t.title }));
+        card.appendChild(el('h2', { text: this.getAttribute('heading-' + this.lg) || this.getAttribute('heading') || t.title }));
         card.appendChild(el('p', { class: 'lead', text: t.lead }));
       }
       var f = el('form', { novalidate: '' });
@@ -167,6 +167,15 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
         website: el('input', { name: 'website', tabindex: '-1', autocomplete: 'off' })
       };
       var i = this.in;
+      // compact: chỉ 3 ô (tên, email, nội dung) + ô đồng ý, cho trang cần form ngắn
+      this.compact = this.hasAttribute('compact');
+      if (this.compact) {
+        i.email.setAttribute('required', '');
+        i.topic = null;
+        f.appendChild(field(t.name + ' *', i.name, 'full'));
+        f.appendChild(field(t.email + ' *', i.email, 'full'));
+        f.appendChild(field(t.message, i.message, 'full'));
+      } else {
       f.appendChild(field(t.name + ' *', i.name, 'full'));
       f.appendChild(field(t.email, i.email));
       f.appendChild(el('label', {}, [document.createTextNode(t.phone), el('div', { class: 'phone' }, [i.code, i.phone])]));
@@ -177,6 +186,7 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
       f.appendChild(field(t.org, i.org));
       f.appendChild(field(t.bestTime, i.bestTime));
       f.appendChild(field(t.message, i.message, 'full'));
+      }
       f.appendChild(el('label', { class: 'consent full' }, [i.consent, document.createTextNode(t.consent)]));
       f.appendChild(el('div', { class: 'hp', 'aria-hidden': 'true' }, [i.website]));
       this.errEl = el('p', { class: 'err', role: 'alert' });
@@ -213,6 +223,7 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
     validate(v) {
       var t = this.t;
       if (!v.name) return t.needName;
+      if (this.compact && !v.email) return t.badEmail;
       if (!v.email && !this.in.phone.value.trim()) return t.needContact;
       if (v.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email)) return t.badEmail;
       if (!v.consent) return t.needConsent;

@@ -147,7 +147,9 @@ img{max-width:100%}
   margin:0 auto;max-width:14ch;text-wrap:balance;
 }
 .hero p.lead{max-width:62ch;margin:28px auto 0;color:var(--muted);font-size:var(--size-body)}
-.hero-cta{display:flex;gap:14px;justify-content:center;margin-top:38px;flex-wrap:wrap}
+.hero-cta{display:flex;gap:14px;justify-content:center;align-items:center;margin-top:38px;flex-wrap:wrap}
+.text-link{display:inline-flex;align-items:center;min-height:var(--tap-min);padding:0 var(--s-3);color:var(--muted);font-size:var(--size-small);text-decoration:underline;text-underline-offset:4px}
+.text-link:hover{color:var(--text)}
 
 /* ribbon hành trình */
 .journey{margin:62px auto 0;max-width:920px}
@@ -386,7 +388,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
         <button type="button" class="lang-opt is-active" data-lang="en">EN</button>
         <button type="button" class="lang-opt" data-lang="vi">VI</button>
       </div>
-      <a id="partnerBtn" class="btn btn-gold" href="#lead" data-en="Partner with us" data-vi="Đồng hành cùng chúng tôi">Partner with us</a>
+      <a class="btn btn-ghost" href="#lead" data-en="Contact" data-vi="Liên hệ">Contact</a>
     </div>
   </div>
 </header>
@@ -399,11 +401,10 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
   <div class="wrap">
     <span class="eyebrow reveal" data-en="The NhiLe Holding ecosystem" data-vi="Hệ sinh thái NhiLe Holding">The NhiLe Holding ecosystem</span>
     <h1 class="reveal d1" data-html data-en='We build to <span class="ital">give back</span>.' data-vi='Kiến tạo để <span class="ital">phụng sự</span>.'>We build to <span class="ital">give back</span>.</h1>
-    <p class="lead reveal d2" data-en="What began as an inspirational YouTube channel has grown into an ecosystem spanning education, content, technology and real-world spaces — so that everyone can learn, connect and become fully themselves." data-vi="Bắt đầu từ một kênh YouTube truyền cảm hứng, nay là một hệ sinh thái gồm giáo dục, nội dung, công nghệ và những không gian thật — để mỗi người được học, được kết nối và được là chính mình.">What began as an inspirational YouTube channel has grown into an ecosystem spanning education, content, technology and real-world spaces — so that everyone can learn, connect and become fully themselves.</p>
-    <p class="lead reveal d3" data-en="How it works: every business is built to stand on its own, and to give back. After operating costs, a share of profit funds NhiLe Foundation — about 20% today, and growing as we grow." data-vi="Cách vận hành: mỗi doanh nghiệp được xây để tự đứng vững và để cho đi. Sau khi trừ chi phí vận hành, một phần lợi nhuận được đưa về NhiLe Foundation — hiện khoảng 20%, và tăng dần khi chúng tôi lớn lên.">How it works: every business is built to stand on its own, and to give back. After operating costs, a share of profit funds NhiLe Foundation — about 20% today, and growing as we grow.</p>
+    <p class="lead reveal d2" data-en="From one YouTube channel, NhiLe Holding has grown into education, content, technology and real places where Vietnamese people learn and grow. About 20% of profit funds NhiLe Foundation." data-vi="Từ một kênh YouTube, NhiLe Holding nay gồm giáo dục, nội dung, công nghệ và những không gian thật để người Việt học và lớn lên. Khoảng 20% lợi nhuận dành cho NhiLe Foundation.">From one YouTube channel, NhiLe Holding has grown into education, content, technology and real places where Vietnamese people learn and grow. About 20% of profit funds NhiLe Foundation.</p>
     <div class="hero-cta reveal d3">
-      <a class="btn btn-gold" href="#ecosystem" data-en="See the full ecosystem" data-vi="Xem toàn cảnh hệ sinh thái">See the full ecosystem</a>
-      <a class="btn btn-ghost" href="#proof" data-en="Read the community story" data-vi="Đọc câu chuyện cộng đồng">Read the community story</a>
+      <a class="btn btn-gold" href="#lead" data-cta="hero" data-en="Book a discovery call" data-vi="Đặt buổi trao đổi">Book a discovery call</a>
+      <a class="text-link" href="#ecosystem" data-en="See the ecosystem ↓" data-vi="Xem hệ sinh thái ↓">See the ecosystem ↓</a>
     </div>
 
     <div class="journey reveal d3" id="journey">
@@ -423,7 +424,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
     <div class="sec-head reveal">
       <span class="eyebrow" data-en="One picture, a thousand words" data-vi="Một bức tranh thay ngàn lời nói">One picture, a thousand words</span>
       <h2 data-en="One human journey, five territories" data-vi="Một hành trình con người, năm vùng đất">One human journey, five territories</h2>
-      <p data-html data-en='At the core sits NhiLe Holding. Four stages — <b style="color:var(--text)">Understand → Grow → Connect → Give back</b> — radiate around it, with Technology as the foundation that holds the whole system. Tap a territory to see the brands inside.' data-vi='Lõi là NhiLe Holding. Bốn chặng <b style="color:var(--text)">Hiểu mình → Phát triển → Kết nối → Cho đi</b> toả ra quanh lõi, và Công nghệ là nền tảng đỡ cả hệ. Chạm vào một vùng để xem các thương hiệu bên trong.'>At the core sits NhiLe Holding. Four stages — <b style="color:var(--text)">Understand → Grow → Connect → Give back</b> — radiate around it, with Technology as the foundation that holds the whole system. Tap a territory to see the brands inside.</p>
+      <p data-html data-en='NhiLe Holding sits at the core, with four stages around it: <b style="color:var(--text)">Understand → Grow → Connect → Give back</b>. Tap a territory to see the brands inside.' data-vi='Lõi là NhiLe Holding, quanh lõi là bốn chặng <b style="color:var(--text)">Hiểu mình → Phát triển → Kết nối → Cho đi</b>. Chạm vào một vùng để xem các thương hiệu bên trong.'>NhiLe Holding sits at the core, with four stages around it: <b style="color:var(--text)">Understand → Grow → Connect → Give back</b>. Tap a territory to see the brands inside.</p>
     </div>
 
     <div class="eco-stage reveal d1">
@@ -642,6 +643,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
       <span class="sep"></span>
       <span data-html data-en="<b>5.0</b> from 776 Google reviews · <b>100%</b> recommend from 342 Facebook reviews" data-vi="<b>5.0</b> từ 776 đánh giá Google · <b>100%</b> giới thiệu từ 342 đánh giá Facebook"><b>5.0</b> from 776 Google reviews · <b>100%</b> recommend from 342 Facebook reviews</span>
     </div>
+    <div class="hero-cta reveal"><a class="btn btn-gold" href="#lead" data-cta="proof" data-en="Book a discovery call" data-vi="Đặt buổi trao đổi">Book a discovery call</a></div>
     <p class="proof-src reveal" data-en="Sources: YouTube Studio and Google and Facebook reviews, checked 26/10/2026; learner and community numbers from NhiLe records, November 2026." data-vi="Nguồn: YouTube Studio và đánh giá Google, Facebook, kiểm 26/10/2026; số học viên và cộng đồng theo hồ sơ NhiLe, tháng 11/2026.">Sources: YouTube Studio and Google and Facebook reviews, checked 26/10/2026; learner and community numbers from NhiLe records, November 2026.</p>
   </div>
 </section>
@@ -653,7 +655,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
     <div class="sec-head reveal">
       <span class="eyebrow" data-en="Services" data-vi="Dịch vụ">Services</span>
       <h2 id="services-h" data-en="Four services, one contact" data-vi="Bốn mảng dịch vụ, một đầu mối">Four services, one contact</h2>
-      <p data-en="NhiLe trains your team, sets Claude up in your workflows and runs them with you every month. N Digital Marketing takes on your marketing end to end. Every request goes to one email address. Claude is the AI model made by Anthropic." data-vi="NhiLe đào tạo đội ngũ, đưa Claude vào quy trình làm việc và vận hành cùng bạn mỗi tháng. N Digital Marketing lo trọn việc tiếp thị. Mọi yêu cầu gửi về một địa chỉ email. Claude là mô hình AI do Anthropic phát triển.">NhiLe trains your team, sets Claude up in your workflows and runs them with you every month. N Digital Marketing takes on your marketing end to end. Every request goes to one email address. Claude is the AI model made by Anthropic.</p>
+      <p data-en="NhiLe trains your team, sets Claude up in your workflows and runs them with you each month. N Digital Marketing handles your marketing end to end." data-vi="NhiLe đào tạo đội của bạn, đưa Claude vào quy trình và vận hành cùng bạn mỗi tháng. N Digital Marketing lo trọn việc tiếp thị.">NhiLe trains your team, sets Claude up in your workflows and runs them with you each month. N Digital Marketing handles your marketing end to end.</p>
     </div>
     <div class="domain-grid svc-grid">
       <article class="card svc-card svc-edu reveal" id="edtech">
@@ -685,23 +687,10 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
     </div>
     <div class="svc-foot reveal">
       <p data-en="Prices are quoted after the discovery call." data-vi="Giá báo sau buổi trao đổi.">Prices are quoted after the discovery call.</p>
-      <a class="btn btn-ghost" id="svcMailBtn" href="mailto:contact@nhi.sg" data-en="Email us to book a discovery call" data-vi="Gửi email đặt lịch">Email us to book a discovery call</a>
+      <a class="btn btn-gold" href="#lead" data-cta="services" data-en="Book a discovery call" data-vi="Đặt buổi trao đổi">Book a discovery call</a>
       <span class="svc-mail"><a href="mailto:contact@nhi.sg">contact@nhi.sg</a></span>
       <p class="svc-intl" data-html data-en='Outside Vietnam? NhiLe Pte. Ltd. in Singapore serves clients in English: <a href="https://works.nhi.sg/" target="_blank" rel="noopener">works.nhi.sg ↗</a>' data-vi='Khách ngoài Việt Nam: NhiLe Pte. Ltd. ở Singapore phục vụ bằng tiếng Anh tại <a href="https://works.nhi.sg/" target="_blank" rel="noopener">works.nhi.sg ↗</a>'>Outside Vietnam? NhiLe Pte. Ltd. in Singapore serves clients in English: <a href="https://works.nhi.sg/" target="_blank" rel="noopener">works.nhi.sg ↗</a></p>
       <p class="svc-privacy" data-en="Your email is used only to reply to your request. To have it deleted, write to contact@nhi.sg." data-vi="Email của bạn chỉ dùng để trả lời yêu cầu này. Muốn xoá, gửi email tới contact@nhi.sg.">Your email is used only to reply to your request. To have it deleted, write to contact@nhi.sg.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CTA ============ -->
-<section class="section" id="cta" style="padding-top:0">
-  <div class="cta-band reveal">
-    <span class="eyebrow" style="display:block;margin-bottom:18px" data-en="Partner with NhiLe" data-vi="Đồng hành cùng NhiLe">Partner with NhiLe</span>
-    <h2 data-en="Where would you like to begin on this journey?" data-vi="Bạn muốn bắt đầu từ đâu trên hành trình này?">Where would you like to begin on this journey?</h2>
-    <p data-en="Whether you want to learn, connect, or give back — there is always an open door in the NhiLe ecosystem." data-vi="Dù bạn muốn học, muốn kết nối, hay muốn cho đi — luôn có một cánh cửa trong hệ sinh thái NhiLe đang mở.">Whether you want to learn, connect, or give back — there is always an open door in the NhiLe ecosystem.</p>
-    <div class="hero-cta" style="margin-top:0">
-      <a class="btn btn-gold" href="#ecosystem" data-en="Explore the ecosystem" data-vi="Khám phá hệ sinh thái">Explore the ecosystem</a>
-      <a class="btn btn-ghost" href="#proof" data-en="Read the community story" data-vi="Đọc câu chuyện cộng đồng">Read the community story</a>
     </div>
   </div>
 </section>
@@ -710,7 +699,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
 
 <!-- ============ FOOTER ============ -->
 <section class="nlh-lead" id="lead">
-    <nlh-contact site="nlh" topics-en="Partnership|Invest or collaborate|Media and speaking|Programmes (N-Education)|Volunteer or join NhiLe Team" topics-vi="Hợp tác|Đầu tư – đồng hành|Truyền thông – diễn giả|Chương trình học (N-Education)|Tham gia NhiLe Team"></nlh-contact>
+    <nlh-contact site="nlh" compact heading-en="Book a discovery call" heading-vi="Đặt buổi trao đổi" topics-en="Partnership|Invest or collaborate|Media and speaking|Programmes (N-Education)|Volunteer or join NhiLe Team" topics-vi="Hợp tác|Đầu tư – đồng hành|Truyền thông – diễn giả|Chương trình học (N-Education)|Tham gia NhiLe Team"></nlh-contact>
   </section>
 <script src="/nlh/nlh-contact.js" defer></script>
 <footer class="footer">
@@ -798,42 +787,6 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
               title:{en:'Technology', vi:'Công nghệ'},
               desc:{en:'The digital foundation that holds the whole ecosystem together.', vi:'Nền tảng số gắn kết toàn bộ hệ sinh thái.'},
               brands:[{name:'Family Cloud', url:'https://familycloud.nhi.sg/', desc:{en:'Partner company · software, web and mobile development and cloud services.', vi:'Công ty đối tác · phát triển phần mềm, web, ứng dụng di động và dịch vụ đám mây.'}}] }
-  };
-
-  /* ---------- nội dung email "Partner with us" (song ngữ) ---------- */
-  var PARTNER_EMAIL = 'contact@nhi.sg';
-  var PARTNER = {
-    en: {
-      su: 'Partnership with NhiLe Holding',
-      body: 'Hello NhiLe Holding team,\n\n'
-          + "I'd love to explore partnering with you. A little about me/us:\n\n"
-          + '• Name:\n'
-          + '• Organization:\n'
-          + '• What we have in mind:\n\n'
-          + 'Looking forward to connecting.\n\n'
-          + 'Warm regards,'
-    },
-    vi: {
-      su: 'Đồng hành cùng NhiLe Holding',
-      body: 'Kính gửi đội ngũ NhiLe Holding,\n\n'
-          + 'Tôi rất mong được đồng hành cùng NhiLe Holding. Đôi nét về tôi/chúng tôi:\n\n'
-          + '• Tên:\n'
-          + '• Tổ chức:\n'
-          + '• Mong muốn hợp tác:\n\n'
-          + 'Rất mong được kết nối.\n\n'
-          + 'Trân trọng,'
-    }
-  };
-  /* email soạn sẵn cho mục Dịch vụ — chữ theo 03-ui-spec của NL-PRD-CLAUDESVC-001 */
-  var SVC_MAIL = {
-    en: {
-      su: 'Services enquiry',
-      body: 'Hello NhiLe team,\n\nOur company: \nThe workflow that is slow today: \nWho does it: \nHours lost per week (rough): \n\nThank you.'
-    },
-    vi: {
-      su: 'Hỏi dịch vụ',
-      body: 'Chào NhiLe,\n\nCông ty: \nQuy trình đang chậm: \nAi đang làm việc đó: \nMỗi tuần mất khoảng bao nhiêu giờ: \n\nCảm ơn.'
-    }
   };
 
   var nodes = document.querySelectorAll('.node');
@@ -1004,30 +957,20 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
     renderActive();        /* dịch lại panel hệ sinh thái */
     renderNumsSuffix();    /* dịch lại hậu tố số liệu */
 
-    /* nút "Partner with us": mở Gmail compose với tiêu đề + nội dung theo ngôn ngữ */
-    var partnerBtn = document.getElementById('partnerBtn');
-    if(partnerBtn){
-      var p = PARTNER[lang] || PARTNER.en;
-      partnerBtn.href = 'https://mail.google.com/mail/?view=cm&fs=1'
-        + '&to=' + encodeURIComponent(PARTNER_EMAIL)
-        + '&su=' + encodeURIComponent(p.su)
-        + '&body=' + encodeURIComponent(p.body);
-    }
-
-    /* nút "Gửi email đặt lịch" ở mục Dịch vụ: mở email soạn sẵn theo ngôn ngữ */
-    var svcMailBtn = document.getElementById('svcMailBtn');
-    if(svcMailBtn){
-      var sm = SVC_MAIL[lang] || SVC_MAIL.en;
-      svcMailBtn.href = 'mailto:' + PARTNER_EMAIL
-        + '?subject=' + encodeURIComponent(sm.su)
-        + '&body=' + encodeURIComponent(sm.body);
-    }
   }
   var langOpts = document.querySelectorAll('.lang-opt');
   for(var lo=0; lo<langOpts.length; lo++){
     langOpts[lo].addEventListener('click', function(){ applyLang(this.getAttribute('data-lang')); });
   }
   applyLang('en'); /* MẶC ĐỊNH: Tiếng Anh / DEFAULT: English */
+
+  /* Số đo chính: lượt gửi form thành công (nlh-lead) và lượt bấm nút chính */
+  function track(name, params){ try { if(typeof gtag==='function'){ gtag('event', name, params||{}); } } catch(e){} }
+  window.addEventListener('nlh-lead', function(ev){ track('generate_lead', { site:'nlh', lead_id:(ev.detail&&ev.detail.id)||'' }); });
+  var ctas = document.querySelectorAll('[data-cta]');
+  for(var ci=0; ci<ctas.length; ci++){
+    ctas[ci].addEventListener('click', function(){ track('cta_click', { position:this.getAttribute('data-cta') }); });
+  }
 })();
 </script>
 </body>
