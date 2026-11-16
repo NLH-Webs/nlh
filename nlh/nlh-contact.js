@@ -113,6 +113,7 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
 .actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:var(--s-3,12px);align-items:center}\
 .err{grid-column:1/-1;color:var(--state-error,#d70015);font-size:var(--size-small,14px);margin:0}\
 .status{border-radius:var(--r-md,14px);padding:var(--s-5,24px);background:var(--bg-sunken,#f5f5f7)}\
+.status:focus{outline:none}\
 .status h3{margin:0 0 var(--s-2,8px);font-size:var(--size-lead,21px)}\
 .status p{margin:0 0 var(--s-4,16px);color:var(--text-secondary,#474749)}\
 @media (max-width:640px){form{grid-template-columns:1fr}.card{padding:var(--s-5,24px)}}';
@@ -282,7 +283,7 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
         consent: i.consent.checked, website: i.website.value,
         timeZone: (Intl.DateTimeFormat().resolvedOptions().timeZone || ''),
         page: location.href, referrer: ss('referrer'),
-        entry_cta: ss('entry_cta'), utm_source: ss('utm_source'), utm_medium: ss('utm_medium'), utm_campaign: ss('utm_campaign'),
+        entry_cta: ss('entry_cta') || ss('cta'), /* nlh-track: nlh_entry_cta; nlh.vn: nlh_cta */ utm_source: ss('utm_source'), utm_medium: ss('utm_medium'), utm_campaign: ss('utm_campaign'),
         userAgent: navigator.userAgent, elapsedMs: Date.now() - this.startedAt
       };
     }
@@ -332,7 +333,8 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
         if (away) { a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener'); }
         kids.push(el('div', { class: 'actions' }, [a]));
       }
-      var box = el('div', { class: 'status', role: 'status', tabindex: '-1' }, kids); // vá nlh: con trỏ vào màn cảm ơn
+      // Focus the thank-you box so screen readers read it out.
+      var box = el('div', { class: 'status', role: 'status', tabindex: '-1' }, kids);
       this.form.replaceWith(box);
       try { box.focus(); } catch (e) {}
       try { window.dispatchEvent(new CustomEvent('nlh-lead', { detail: { site: this.site, id: id } })); } catch (e) {}
