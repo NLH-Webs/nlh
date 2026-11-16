@@ -147,7 +147,7 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
       var card = el('div', { class: 'card' });
       if (!this.hasAttribute('no-heading')) {
         card.appendChild(el('h2', { text: this.getAttribute('heading-' + this.lg) || this.getAttribute('heading') || t.title }));
-        card.appendChild(el('p', { class: 'lead', text: t.lead }));
+        card.appendChild(el('p', { class: 'lead', text: this.getAttribute('lead-' + this.lg) || t.lead }));
       }
       var f = el('form', { novalidate: '' });
       var field = function (label, input, cls) { return el('label', cls ? { class: cls } : {}, [document.createTextNode(label), input]); };
@@ -250,10 +250,17 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
     }
 
     done(id) {
-      var t = this.t;
-      this.form.replaceWith(el('div', { class: 'status', role: 'status' }, [
-        el('h3', { text: t.okTitle }), el('p', { text: t.okBody.replace('{id}', id || '') })
-      ]));
+      var t = this.t, lg = this.lg;
+      // Trang tự đặt lời hứa và bước tiếp: ok-<lg> (có {id}), next-href + next-<lg>.
+      var body = (this.getAttribute('ok-' + lg) || t.okBody).replace('{id}', id || '');
+      var kids = [el('h3', { text: t.okTitle }), el('p', { text: body })];
+      var nextHref = this.getAttribute('next-href'), nextLabel = this.getAttribute('next-' + lg);
+      if (nextHref && nextLabel) {
+        kids.push(el('div', { class: 'actions' }, [el('a', { class: 'btn quiet', href: nextHref, target: '_blank', rel: 'noopener', 'data-track': 'ecosystem', 'data-cta': 'thank-you-next', text: nextLabel })]));
+      }
+      var box = el('div', { class: 'status', role: 'status', tabindex: '-1' }, kids);
+      this.form.replaceWith(box);
+      try { box.focus(); } catch (e) {}
       try { window.dispatchEvent(new CustomEvent('nlh-lead', { detail: { site: this.site, id: id } })); } catch (e) {}
     }
 
