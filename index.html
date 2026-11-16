@@ -14,13 +14,15 @@
 <meta name="author" content="NhiLe Holding" />
 <link rel="icon" href="/favicon.ico" />
 <meta property="og:title" content="NhiLe Holding — An ecosystem for human growth" />
-<meta property="og:description" content="NhiLe Holding — một hệ sinh thái giúp người Việt hiểu mình, phát triển, kết nối và cho đi." />
+<meta property="og:description" content="NhiLe Holding builds education, content, technology and real places where Vietnamese people can understand themselves, grow, connect and give back. About 20% of profit funds NhiLe Foundation." />
+<meta property="og:url" content="https://nlh.vn/" />
+<link rel="canonical" href="https://nlh.vn/" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://nlh.nhi.sg/og-nlh.png" />
+<meta property="og:image" content="https://nlh.vn/og-nlh.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://nlh.nhi.sg/og-nlh.png" />
+<meta name="twitter:image" content="https://nlh.vn/og-nlh.png" />
 <title>NhiLe Holding — An ecosystem for human growth</title>
-<meta name="description" content="NhiLe Holding — một hệ sinh thái giúp người Việt hiểu mình, phát triển, kết nối và cho đi. Giáo dục · Nội dung · Không gian & cộng đồng · Công nghệ · Vì cộng đồng." />
+<meta name="description" content="NhiLe Holding builds education, content, technology and real places where Vietnamese people can understand themselves, grow, connect and give back. About 20% of profit funds NhiLe Foundation." />
 <link rel="stylesheet" href="/nlh/nlh-fonts.css" />
 <link rel="stylesheet" href="/nlh/nlh-tokens.css" />
 <style>
@@ -135,7 +137,7 @@ img{max-width:100%}
 
 /* ============ HERO ============ */
 .hero{position:relative;padding:96px 0 60px;text-align:center}
-.hero-glow{position:absolute;left:50%;top:120px;width:680px;height:420px;transform:translateX(-50%);
+.hero-glow{position:absolute;left:50%;top:120px;width:min(680px,100%);height:420px;transform:translateX(-50%);
   background:radial-gradient(closest-side,color-mix(in srgb, var(--action) 22%, transparent),transparent 70%);filter:blur(8px);z-index:0;pointer-events:none}
 .hero .wrap{position:relative;z-index:1}
 .hero .eyebrow{margin-bottom:26px}
@@ -564,7 +566,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow" data-en="A closer look" data-vi="Nhìn gần hơn">A closer look</span>
-      <h2 data-en="Five territories, nine brands" data-vi="Năm vùng đất, chín thương hiệu">Five territories, nine brands</h2>
+      <h2 data-en="Five territories, six brands, two partners" data-vi="Năm vùng đất, sáu thương hiệu, hai đối tác">Five territories, six brands, two partners</h2>
       <p data-html data-en="The map above shows the shape of the ecosystem at a glance. Below is each territory in full — and every brand that lives within it." data-vi="Sơ đồ phía trên cho bạn hình dung tổng thể trong một cái nhìn. Dưới đây là từng vùng đất một cách đầy đủ — cùng mọi thương hiệu bên trong.">The map above shows the shape of the ecosystem at a glance. Below is each territory in full — and every brand that lives within it.</p>
     </div>
     <div class="domain-grid">
@@ -584,7 +586,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
         <div class="stage-tag"><b>03</b> · <span data-en="Connect" data-vi="Kết nối">Connect</span></div>
         <h3 data-en="Spaces, Experiences &amp; Community" data-vi="Không gian, Trải nghiệm &amp; Cộng đồng">Spaces, Experiences &amp; Community</h3>
         <p data-en="Where people meet, experience, and belong." data-vi="Nơi con người gặp gỡ, trải nghiệm và thuộc về.">Where people meet, experience, and belong.</p>
-        <div class="brands"><a href="https://tih.nhi.sg/" target="_blank" rel="noopener">This is home</a><a href="https://bloom.nhi.sg/" target="_blank" rel="noopener">BLOOM Retreat</a><a href="https://hush.nhi.sg/" target="_blank" rel="noopener">HUSH Garden Cafe &amp; Workspace</a></div>
+        <div class="brands"><a href="https://tih.nhi.sg/" target="_blank" rel="noopener" data-en="This Is Home · partner" data-vi="This Is Home · đối tác">This Is Home · partner</a><a href="https://bloom.nhi.sg/" target="_blank" rel="noopener">BLOOM Retreat</a><a href="https://hush.nhi.sg/" target="_blank" rel="noopener">HUSH Garden Cafe &amp; Workspace</a></div>
       </article>
       <article class="card reveal d1" style="--c:var(--care)">
         <div class="stage-tag"><b>04</b> · <span data-en="Give back" data-vi="Cho đi">Give back</span></div>
@@ -596,10 +598,10 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
         <div class="stage-tag"><b>＋</b> · <span data-en="Foundation" data-vi="Nền tảng">Foundation</span></div>
         <h3 data-en="Technology" data-vi="Công nghệ">Technology</h3>
         <p data-en="The digital foundation that holds the whole ecosystem together." data-vi="Nền tảng số gắn kết toàn bộ hệ sinh thái.">The digital foundation that holds the whole ecosystem together.</p>
-        <div class="brands"><a href="https://familycloud.nhi.sg/" target="_blank" rel="noopener">Family Cloud</a></div>
+        <div class="brands"><a href="https://familycloud.nhi.sg/" target="_blank" rel="noopener" data-en="Family Cloud · partner" data-vi="Family Cloud · đối tác">Family Cloud · partner</a></div>
       </article>
     </div>
-    <!-- Brands: 8 named across 5 territories (NHI'S HOUSE and S&W removed; space order this is home, BLOOM, HUSH). -->
+    <!-- 6 thương hiệu + 2 đối tác (This Is Home, Family Cloud), chị Nhi chốt 16/11/2026. NHI'S HOUSE và S&W đã gỡ. -->
   </div>
 </section>
 
@@ -615,7 +617,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
       <div class="stat reveal"><div class="num" data-to="200" data-suffix-en="K+" data-suffix-vi="K+">200K+</div><div class="lbl" data-en="Subscribers" data-vi="Người theo dõi">Subscribers</div></div>
       <div class="stat reveal d1"><div class="num" data-to="8" data-suffix-en=" yrs" data-suffix-vi=" năm">8 yrs</div><div class="lbl" data-en="Building in public" data-vi="Xây dựng công khai">Building in public</div></div>
       <div class="stat reveal d2"><div class="num" data-to="60" data-suffix-en="" data-suffix-vi="">60</div><div class="lbl" data-en="People on the core team" data-vi="Thành viên đội ngũ cốt cán">People on the core team</div></div>
-      <div class="stat reveal d3"><div class="num" data-to="9" data-suffix-en="" data-suffix-vi="">9</div><div class="lbl" data-en="Brands across the ecosystem" data-vi="Thương hiệu trong hệ sinh thái">Brands across the ecosystem</div></div>
+      <div class="stat reveal d3"><div class="num" data-to="6" data-suffix-en="" data-suffix-vi="">6</div><div class="lbl" data-en="Brands across the ecosystem" data-vi="Thương hiệu trong hệ sinh thái">Brands across the ecosystem</div></div>
     </div>
     <div class="proof-foot reveal d2">
       <div class="social">
@@ -655,6 +657,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
         <h3 data-en="EdTech &amp; Training" data-vi="Công nghệ giáo dục &amp; Đào tạo">EdTech &amp; Training</h3>
         <p data-en="Your team learns to use Claude well and safely, hands-on, on its own tasks." data-vi="Đội của bạn học dùng Claude đúng và an toàn, thực hành trên chính việc của mình.">Your team learns to use Claude well and safely, hands-on, on its own tasks.</p>
         <p class="svc-out" data-html data-en="<b>You get:</b> a team that uses Claude the right way, an internal course, and a shared prompt library." data-vi="<b>Bạn nhận:</b> đội dùng Claude đúng cách, một khoá học nội bộ, và thư viện câu lệnh dùng chung."><b>You get:</b> a team that uses Claude the right way, an internal course, and a shared prompt library.</p>
+        <div class="brands"><a href="https://demo.nlh.vn/" target="_blank" rel="noopener" data-en="See what one class builds ↗" data-vi="Xem một buổi học làm ra gì ↗">See what one class builds ↗</a></div>
       </article>
       <article class="card svc-card svc-tech reveal d1" id="setup">
         <span class="svc-status" data-en="Open" data-vi="Đang nhận">Open</span>
@@ -742,7 +745,7 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
     </div>
     <div class="legal">
       <span data-en="© 2026 NhiLe Holding · An ecosystem for human growth." data-vi="© 2026 NhiLe Holding · Một hệ sinh thái vì sự phát triển con người.">© 2026 NhiLe Holding · An ecosystem for human growth.</span>
-      <span data-en="NhiLe TEAM — around 60 people, working with AI, behind everything we build." data-vi="NhiLe TEAM — khoảng 60 con người cùng AI đứng sau mọi mảnh ghép.">NhiLe TEAM — around 60 people, working with AI, behind everything we build.</span>
+      <a href="https://nlt.nhi.sg/" target="_blank" rel="noopener" data-en="NhiLe TEAM — around 60 people, working with AI, behind everything we build." data-vi="NhiLe TEAM — khoảng 60 con người cùng AI đứng sau mọi mảnh ghép.">NhiLe TEAM — around 60 people, working with AI, behind everything we build.</a>
     </div>
   </div>
 </footer>
