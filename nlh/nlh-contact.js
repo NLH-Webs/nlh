@@ -215,7 +215,7 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
         consent: i.consent.checked, website: i.website.value,
         timeZone: (Intl.DateTimeFormat().resolvedOptions().timeZone || ''),
         page: location.href, referrer: ss('referrer'),
-        utm_source: ss('utm_source'), utm_medium: ss('utm_medium'), utm_campaign: ss('utm_campaign'),
+        cta: ss('cta'), utm_source: ss('utm_source'), utm_medium: ss('utm_medium'), utm_campaign: ss('utm_campaign'),
         userAgent: navigator.userAgent, elapsedMs: Date.now() - this.startedAt
       };
     }
