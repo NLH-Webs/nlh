@@ -1031,7 +1031,6 @@ a.bname:hover{color:var(--edu);text-decoration:underline;text-underline-offset:3
       kind = kind || 'ecosystem'; name = name || url.hostname;
     }
     if(!kind) return;
-    try { if(kind==='cta' || kind==='contact'){ sessionStorage.setItem('nlh_cta', name||''); } } catch(e){}
     track(kind==='cta' ? 'cta_click' : kind==='contact' ? 'contact_click' : 'ecosystem_click',
           { cta:name||'', destination:url.protocol==='mailto:' ? 'email' : (url.hostname===location.hostname ? url.hash : url.hostname) });
   }, true);

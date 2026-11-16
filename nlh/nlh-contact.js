@@ -9,6 +9,7 @@
  *                                   the consent box always comes last. Keep it to 4 boxes.
  *   compact                         short for fields="name,contact,channel" (4 boxes with consent).
  *   compact channels                short for fields="name,contact,channel,message" (nlf.sg).
+ *   heading-en / heading-vi         form title per language (plain heading still works).
  *   ok-title / ok-body (-en / -vi)  thank-you text; ok-body may use {id}, {reply}, {channel}.
  *   reply-time-en / reply-time-vi   the reply promise, e.g. "24 hours" / "24 giờ". Default
  *                                   "1–2 working days". Set 24 hours only when the person who
@@ -98,7 +99,7 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4,16px)}\
 label{display:grid;gap:var(--s-1,4px);font-size:var(--size-small,14px);font-weight:600;color:var(--text-secondary,#474749)}\
 input,select,textarea{font:inherit;font-size:16px;font-weight:400;color:var(--text-primary,#1d1d1f);background:var(--bg-base,#fff);border:1px solid var(--line-strong,#d2d2d7);border-radius:var(--r-sm,10px);padding:10px 12px;min-height:44px;width:100%;box-sizing:border-box}\
 textarea{min-height:110px;resize:vertical}\
-input:focus,select:focus,textarea:focus{outline:3px solid var(--focus-ring,rgba(223,0,41,.4));outline-offset:1px;border-color:var(--action,#df0029)}\
+input:focus,select:focus,textarea:focus{outline:3px solid var(--focus-ring,rgba(139,26,26,.45));outline-offset:1px;border-color:var(--action,#8B1A1A)}\
 .phone{display:grid;grid-template-columns:110px 1fr;gap:var(--s-2,8px)}\
 .hint{grid-column:1/-1;margin:-8px 0 0;font-size:var(--size-caption,12px);color:var(--text-tertiary,#6b6b6f)}\
 .consent{display:flex;gap:var(--s-2,8px);align-items:flex-start;font-weight:400}\
@@ -106,7 +107,7 @@ input:focus,select:focus,textarea:focus{outline:3px solid var(--focus-ring,rgba(
 .consent input{width:20px;min-height:20px;height:20px;margin-top:2px;flex:none}\
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}\
 button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-height:44px;padding:0 var(--s-5,24px);border-radius:var(--r-pill,980px);border:0;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}\
-.primary{background:var(--action,#df0029);color:var(--action-on,#fff)}\
+.primary{background:var(--action,#8B1A1A);color:var(--action-on,#fff)}\
 .primary[disabled]{opacity:.6;cursor:progress}\
 .quiet{background:transparent;color:var(--text-primary,#1d1d1f);border:1px solid var(--line-strong,#d2d2d7)}\
 .actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:var(--s-3,12px);align-items:center}\
@@ -179,7 +180,7 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
       this.root.appendChild(el('style', { text: CSS }));
       var card = el('div', { class: 'card' });
       if (!this.hasAttribute('no-heading')) {
-        card.appendChild(el('h2', { text: this.opt('heading', this.getAttribute('heading') || t.title) })); // vá nlh: heading-en/vi
+        card.appendChild(el('h2', { text: this.opt('heading', this.getAttribute('heading') || t.title) }));
         card.appendChild(el('p', { class: 'lead', text: this.opt('lead', t.lead).replace('{reply}', this.replyTime()) }));
       }
       var f = el('form', { novalidate: '' });
@@ -276,12 +277,12 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
         site: this.site, lang: this.lg,
         name: i.name.value.trim(), email: email, phone: phone,
         channel: this.fields ? (this.channelShown ? i.quick.value : (this.guessChannel(c) || (email ? 'Email' : this.t.phoneChannel))) : i.channel.value,
-        country: i.country.value, cta: this.getAttribute('data-cta') || '', entry_cta: ss('cta'), submittedAt: new Date().toISOString(), topic: i.topic ? i.topic.value : '',
+        country: i.country.value, cta: this.getAttribute('data-cta') || '', submittedAt: new Date().toISOString(), topic: i.topic ? i.topic.value : '',
         organisation: i.org.value.trim(), bestTime: i.bestTime.value.trim(), message: i.message.value.trim(),
         consent: i.consent.checked, website: i.website.value,
         timeZone: (Intl.DateTimeFormat().resolvedOptions().timeZone || ''),
         page: location.href, referrer: ss('referrer'),
-        utm_source: ss('utm_source'), utm_medium: ss('utm_medium'), utm_campaign: ss('utm_campaign'),
+        entry_cta: ss('entry_cta'), utm_source: ss('utm_source'), utm_medium: ss('utm_medium'), utm_campaign: ss('utm_campaign'),
         userAgent: navigator.userAgent, elapsedMs: Date.now() - this.startedAt
       };
     }
@@ -346,7 +347,7 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
         t.channel + ': ' + v.channel, t.country + ': ' + v.country, t.topic + ': ' + v.topic,
         t.org + ': ' + v.organisation, t.bestTime + ': ' + v.bestTime, '', v.message, '',
         '— ' + v.site + ' · ' + v.page,
-        'source: ' + [v.referrer, v.utm_source, v.utm_medium, v.utm_campaign, v.entry_cta].filter(Boolean).join(' · ')
+        'source: ' + [v.referrer, v.utm_source, v.utm_medium, v.utm_campaign].filter(Boolean).join(' · ')
       ].join('\n');
       // Subject carries only where the note came from: "[<site>] <data-cta>". The visitor's name
       // stays in the body, never in the subject (inbox previews, filters and logs show subjects).

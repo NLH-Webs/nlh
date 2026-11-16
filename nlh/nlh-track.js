@@ -44,6 +44,11 @@
     var path = ev.composedPath ? ev.composedPath() : [ev.target], el = null;
     for (var k = 0; k < path.length; k++) { if (path[k].getAttribute && path[k].hasAttribute('data-track')) { el = path[k]; break; } }
     if (!el) return;
+    // Remember the last button that led the visitor on (not the form itself), so a form sent
+    // later says which button brought them: nlh-contact sends it as entry_cta.
+    if (el.tagName !== 'NLH-CONTACT' && el.getAttribute('data-cta')) {
+      try { sessionStorage.setItem('nlh_entry_cta', el.getAttribute('data-cta')); } catch (e) {}
+    }
     try {
       document.dispatchEvent(new CustomEvent('nlh-track', { detail: {
         site: SITE, track: el.getAttribute('data-track'), cta: el.getAttribute('data-cta') || '',
