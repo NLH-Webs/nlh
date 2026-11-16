@@ -264,9 +264,14 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
       var body = [
         t.name + ': ' + v.name, t.email + ': ' + v.email, t.phone + ': ' + v.phone,
         t.channel + ': ' + v.channel, t.country + ': ' + v.country, t.topic + ': ' + v.topic,
-        t.org + ': ' + v.organisation, t.bestTime + ': ' + v.bestTime, '', v.message, '', '— ' + v.site + ' · ' + v.page
+        t.org + ': ' + v.organisation, t.bestTime + ': ' + v.bestTime, '', v.message, '',
+        '— ' + v.site + ' · ' + v.page,
+        'source: ' + [v.referrer, v.utm_source, v.utm_medium, v.utm_campaign, v.cta].filter(Boolean).join(' · ')
       ].join('\n');
-      var href = 'mailto:' + TEAM_EMAIL + '?subject=' + encodeURIComponent('[Lead] ' + v.site + ' · ' + (v.topic || '') + ' · ' + v.name) + '&body=' + encodeURIComponent(body);
+      // Subject carries only where the note came from: "[<site>] <data-cta>". The visitor's name
+      // stays in the body, never in the subject (inbox previews, filters and logs show subjects).
+      var cta = this.getAttribute('data-cta') || 'contact-form';
+      var href = 'mailto:' + TEAM_EMAIL + '?subject=' + encodeURIComponent('[' + v.site + '] ' + cta) + '&body=' + encodeURIComponent(body);
       var box = el('div', { class: 'status full', role: 'alert' }, [
         el('h3', { text: t.errTitle }), el('p', { text: t.errBody }),
         el('div', { class: 'actions' }, [el('a', { class: 'btn primary', href: href, text: t.errMail })])
