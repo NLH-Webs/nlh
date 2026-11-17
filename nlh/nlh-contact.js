@@ -315,7 +315,9 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
         signal: ctrl ? ctrl.signal : undefined
       }).then(function (r) { return r.json(); }).then(function (res) {
         clearTimeout(timer);
-        if (res && res.ok) { self.clearDraft(); self.done(res.id, v); } else { self.fail(v); }
+        // The lead script answers ok with id 'ignored' when it drops a send it thinks is a bot (sent too fast).
+        // A real person who typed fast must not see a fake success: show the email fallback instead.
+        if (res && res.ok && res.id && res.id !== 'ignored') { self.clearDraft(); self.done(res.id, v); } else { self.fail(v); }
       }).catch(function () { clearTimeout(timer); self.fail(v); });
     }
 
