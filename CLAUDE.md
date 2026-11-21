@@ -133,7 +133,8 @@ Portal cần có `architecture.md`, gộp từ API contract đã được Data G
   - **Why:** tách từ `dev` sẽ mất trang chủ hiện tại.
   - **How to apply:** dùng `ui/<mô-tả>` tách từ `origin/main`, không mở PR; báo Tech Lead đồng bộ `dev` với `main`. Khi `dev` đã kịp `main` thì quay lại tách từ `origin/dev`.
 - Repo chưa có husky, `.gitattributes` và branch protection theo §4 — việc của Tech Lead.
-- **Màu thương hiệu:** chị Nhi chốt 16/11/2026: mọi web công khai của nhà NhiLe theo **Brand Guide v3.0**, nlh.vn bỏ vàng `#d4a017` (v1.3.2, duyệt 26/09/2026). Bảng v3.0: Đen `#0D0D0D` (nền), Đỏ thẫm `#8B1A1A`, Vàng kim `#B7860B`, Vàng sáng `#E8C070` (chỉ nút chính, chữ đen), Kem `#F8F4EE` (chữ trên nền đen). Tỉ lệ 60·20·20; không đỏ tươi; không chữ vàng trên nền đỏ.
+- **Màu thương hiệu:** chị Nhi chốt 16/11/2026: mọi web công khai của nhà NhiLe theo **Brand Guide v3.0**, nlh.vn bỏ vàng `#d4a017` (v1.3.2, duyệt 26/09/2026). Bảng v3.0: Đen `#0D0D0D` (nền), Đỏ thẫm `#8B1A1A`, Vàng kim `#B7860B`, Vàng sáng `#E8C070`, Kem `#F8F4EE`. Tỉ lệ 60·20·20; không đỏ tươi; không chữ vàng trên nền đỏ.
+  - **Cập nhật 21/11/2026 (chị Nhi: "màu khớp demo.nlh.vn"):** nút chính đỏ thẫm `#8B1A1A` chữ trắng, đỏ chỉ dùng cho nút chính; báo lỗi form vàng kim đậm (`#7A5906` nền sáng, `#E8C070` nền tối); trang có nền sáng (`#F8F4EE`) và tối (`#0D0D0D`) theo máy khách, token như trang chủ demo.nlh.vn.
   - **Why:** cả hệ nhìn là biết một nhà.
   - **How to apply:** token `--brand-nlh*` trong `nlh/nlh-tokens.css` là bản v3.0 (trang dùng `data-brand="nlh"`). Không viết mã màu trong `index.html`. Chữ tương phản ≥ 4.5:1: đỏ thẫm không làm chữ trên nền tối, dùng `--brand-nlh-red-dark`. Bản token này cần đưa ngược về `NLH-CORE/design-system` (việc của Tech Lead); khi design-system có v3.0 thì chép lại nguyên văn.
 - **Kiểm thử trên điện thoại thật:** mục Dịch vụ trên bản preview đã thử trên iPhone và Android — Tyna xác nhận 26/09/2026.
