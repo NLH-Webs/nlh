@@ -22,10 +22,13 @@
  *   message-en / message-vi         label of the message box.
  *   consent-en / consent-vi         consent sentence, so a partner site can name itself.
  *   data-cta                        names the form in the email fallback subject.
+ *   team-email                      address for the email fallback button (default contact@nhi.sg).
  *
  * Posts to the NhiLe Leads Apps Script (Google Sheet + email to contact@nhi.sg).
  * Never shows a fake success: on any failure the visitor keeps their text and
  * gets a one-click email fallback to contact@nhi.sg.
+ * Errors show under each box that needs fixing, and the cursor jumps to the first one.
+ * Error colour: the page's --state-error token, falling back to crimson #8B1A1A.
  * Styling reads the NLH design tokens (inherited CSS variables) with fallbacks.
  */
 (function () {
@@ -59,6 +62,7 @@
       badContact: 'Email hoặc số điện thoại chưa đúng. Số cần ít nhất 8 chữ số.', privacy: 'Chính sách bảo mật',
       errTitle: 'Chưa gửi được', errBody: 'Đường truyền đang gặp sự cố. Thông tin bạn nhập vẫn còn nguyên — bấm nút dưới để gửi bằng email, hoặc thử lại.',
       errMail: 'Gửi bằng email', retry: 'Thử lại',
+      ignoredBody: 'Bạn bấm gửi lại, hoặc gửi bằng email. Thông tin bạn nhập vẫn còn nguyên.',
       needName: 'Vui lòng nhập họ tên.', needContact: 'Vui lòng nhập email hoặc số điện thoại.',
       needEmail: 'Vui lòng nhập email để chúng tôi trả lời bạn.', contact: 'Email, Zalo hoặc số điện thoại',
       badEmail: 'Email chưa đúng định dạng.', needConsent: 'Vui lòng đánh dấu đồng ý để chúng tôi liên hệ lại.',
@@ -80,6 +84,7 @@
       badContact: 'Please check the email or phone number. A number needs at least 8 digits.', privacy: 'Privacy policy',
       errTitle: 'Not sent yet', errBody: 'Something went wrong on our side. Your details are still here — send them by email with the button below, or try again.',
       errMail: 'Send by email', retry: 'Try again',
+      ignoredBody: 'Please press send again, or send it by email. Your details are still here.',
       needName: 'Please enter your name.', needContact: 'Please give an email or a phone number.',
       needEmail: 'Please enter your email so we can reply.', contact: 'Email, WhatsApp or phone number',
       badEmail: 'Please check the email address.', needConsent: 'Please tick the consent box so we can contact you.',
@@ -94,7 +99,7 @@
 .card{border:1px solid var(--line-hairline,#e8e8ed);border-radius:var(--r-lg,20px);background:var(--bg-raised,#fff);padding:var(--s-6,32px);max-width:720px;margin:0 auto;box-sizing:border-box}\
 h2{font-family:var(--font-display,Georgia,serif);font-size:var(--size-title,28px);line-height:var(--lh-title,1.2);margin:0 0 var(--s-2,8px)}\
 .lead{margin:0 0 var(--s-5,24px);color:var(--text-secondary,#474749);font-size:var(--size-body,17px)}\
-form{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4,16px)}\
+form{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4,16px)}\
 .full{grid-column:1/-1}\
 label{display:grid;gap:var(--s-1,4px);font-size:var(--size-small,14px);font-weight:600;color:var(--text-secondary,#474749)}\
 input,select,textarea{font:inherit;font-size:16px;font-weight:400;color:var(--text-primary,#1d1d1f);background:var(--bg-base,#fff);border:1px solid var(--line-strong,#d2d2d7);border-radius:var(--r-sm,10px);padding:10px 12px;min-height:44px;width:100%;box-sizing:border-box}\
@@ -103,7 +108,8 @@ input:focus,select:focus,textarea:focus{outline:3px solid var(--focus-ring,rgba(
 .phone{display:grid;grid-template-columns:110px 1fr;gap:var(--s-2,8px)}\
 .hint{grid-column:1/-1;margin:-8px 0 0;font-size:var(--size-caption,12px);color:var(--text-tertiary,#6b6b6f)}\
 .consent{display:flex;gap:var(--s-2,8px);align-items:flex-start;font-weight:400}\
-.consent a{color:inherit;text-decoration:underline;text-underline-offset:3px}\
+.consent{min-height:44px}\
+.consent a{color:inherit;text-decoration:underline;text-underline-offset:3px;display:inline-flex;align-items:center;min-height:44px;margin-top:-12px}\
 .consent input{width:20px;min-height:20px;height:20px;margin-top:2px;flex:none}\
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}\
 button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-height:44px;padding:0 var(--s-5,24px);border-radius:var(--r-pill,980px);border:0;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}\
@@ -111,7 +117,10 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
 .primary[disabled]{opacity:.6;cursor:progress}\
 .quiet{background:transparent;color:var(--text-primary,#1d1d1f);border:1px solid var(--line-strong,#d2d2d7)}\
 .actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:var(--s-3,12px);align-items:center}\
-.err{grid-column:1/-1;color:var(--state-error,#d70015);font-size:var(--size-small,14px);margin:0}\
+.err{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}\
+.ferr{grid-column:1/-1;color:var(--state-error,#8B1A1A);font-size:var(--size-small,14px);font-weight:600;margin:0}\
+.ferr:empty{display:none}\
+[aria-invalid="true"]{border-color:var(--state-error,#8B1A1A)}\
 .status{border-radius:var(--r-md,14px);padding:var(--s-5,24px);background:var(--bg-sunken,#f5f5f7)}\
 .status:focus{outline:none}\
 .status h3{margin:0 0 var(--s-2,8px);font-size:var(--size-lead,21px)}\
@@ -257,7 +266,11 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
       this.btn = el('button', { type: 'submit', class: 'primary', text: this.sendLabel });
       f.appendChild(el('div', { class: 'actions' }, [this.btn]));
       f.addEventListener('submit', function (ev) { ev.preventDefault(); self.submit(); });
-      f.addEventListener('input', function () { self.saveDraft(); });
+      f.addEventListener('input', function (ev) {
+        self.saveDraft();
+        var n = ev.target;
+        if (n && n._err && n._err.textContent) { n._err.textContent = ''; n.removeAttribute('aria-invalid'); n.removeAttribute('aria-describedby'); }
+      });
       card.appendChild(f);
       this.form = f;
       this.card = card;
@@ -288,22 +301,52 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
       };
     }
 
+    // Every problem, each tied to the box it belongs to, in the order the boxes appear.
     validate(v) {
-      var t = this.t;
-      if (!v.name) return t.needName;
-      if (this.emailRequired && !v.email) return t.needEmail;
-      if (!v.email && !v.phone) return t.needContact;
-      var c = this.in.contact.value.trim();
-      if (this.fields && c && c.indexOf('@') < 0 && c.replace(/\D/g, '').length < 8) return t.badContact;
-      if (v.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email)) return t.badEmail;
-      if (!v.consent) return t.needConsent;
-      return '';
+      var t = this.t, i = this.in, out = [];
+      var cbox = this.fields && this.fields.indexOf('contact') >= 0 ? i.contact : (this.emailRequired || !this.fields ? i.email : i.phone);
+      var c = i.contact.value.trim();
+      if (!v.name) out.push({ input: i.name, msg: t.needName });
+      if (this.emailRequired && !v.email) out.push({ input: i.email, msg: t.needEmail });
+      else if (!v.email && !v.phone) out.push({ input: cbox, msg: t.needContact });
+      else if (this.fields && c && c.indexOf('@') < 0 && c.replace(/\D/g, '').length < 8) out.push({ input: i.contact, msg: t.badContact });
+      else if (v.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email)) out.push({ input: c.indexOf('@') >= 0 ? i.contact : i.email, msg: t.badEmail });
+      if (!v.consent) out.push({ input: i.consent, msg: t.needConsent });
+      return out;
+    }
+
+    // The error line under a box: inside its label, or right after the consent row.
+    errFor(input) {
+      if (input._err) return input._err;
+      var lab = input.closest('label'), p = el('p', { class: 'ferr', id: 'e-' + (input.name || 'consent') });
+      if (!lab) return null;
+      if (lab.classList.contains('consent')) lab.after(p); else lab.appendChild(p);
+      input._err = p;
+      return p;
+    }
+
+    showErrors(list) {
+      var self = this;
+      Object.keys(this.in).forEach(function (k) {
+        var n = self.in[k];
+        if (n && n._err) { n._err.textContent = ''; n.removeAttribute('aria-invalid'); n.removeAttribute('aria-describedby'); }
+      });
+      list.forEach(function (e) {
+        var p = self.errFor(e.input);
+        if (!p) return;
+        p.textContent = e.msg;
+        e.input.setAttribute('aria-invalid', 'true');
+        e.input.setAttribute('aria-describedby', p.id);
+      });
+      // Screen readers hear the first problem; the cursor jumps to that box.
+      this.errEl.textContent = list.length ? list[0].msg : '';
+      if (list.length) { try { list[0].input.focus(); } catch (e) {} }
     }
 
     submit() {
-      var v = this.values(), msg = this.validate(v), self = this;
-      this.errEl.textContent = msg;
-      if (msg) return;
+      var v = this.values(), errs = this.validate(v), self = this;
+      this.showErrors(errs);
+      if (errs.length) return;
       this.btn.disabled = true;
       this.btn.textContent = this.t.sending;
       var ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
@@ -317,7 +360,7 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
         clearTimeout(timer);
         // The lead script answers ok with id 'ignored' when it drops a send it thinks is a bot (sent too fast).
         // A real person who typed fast must not see a fake success: show the email fallback instead.
-        if (res && res.ok && res.id && res.id !== 'ignored') { self.clearDraft(); self.done(res.id, v); } else { self.fail(v); }
+        if (res && res.ok && res.id && res.id !== 'ignored') { self.clearDraft(); self.done(res.id, v); } else { self.fail(v, res && res.id === 'ignored'); }
       }).catch(function () { clearTimeout(timer); self.fail(v); });
     }
 
@@ -342,7 +385,7 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
       try { window.dispatchEvent(new CustomEvent('nlh-lead', { detail: { site: this.site, id: id } })); } catch (e) {}
     }
 
-    fail(v) {
+    fail(v, ignored) {
       var t = this.t, self = this;
       this.btn.disabled = false;
       this.btn.textContent = this.sendLabel || t.send;
@@ -356,9 +399,9 @@ button,.btn{font:inherit;font-weight:600;font-size:var(--size-body,17px);min-hei
       // Subject carries only where the note came from: "[<site>] <data-cta>". The visitor's name
       // stays in the body, never in the subject (inbox previews, filters and logs show subjects).
       var cta = this.getAttribute('data-cta') || 'contact-form';
-      var href = 'mailto:' + TEAM_EMAIL + '?subject=' + encodeURIComponent('[' + v.site + '] ' + cta) + '&body=' + encodeURIComponent(body);
+      var href = 'mailto:' + (this.getAttribute('team-email') || TEAM_EMAIL) + '?subject=' + encodeURIComponent('[' + v.site + '] ' + cta) + '&body=' + encodeURIComponent(body);
       var box = el('div', { class: 'status full', role: 'alert' }, [
-        el('h3', { text: t.errTitle }), el('p', { text: t.errBody }),
+        el('h3', { text: t.errTitle }), el('p', { text: ignored ? t.ignoredBody : t.errBody }),
         el('div', { class: 'actions' }, [el('a', { class: 'btn primary', href: href, text: t.errMail })])
       ]);
       var old = this.form.querySelector('.status');
