@@ -195,14 +195,32 @@
 [data-brand="nlt"]   { --action: var(--brand-nlt);   --action-on: var(--brand-nlt-on);   --action-ink: var(--brand-nlt-ink); }
 [data-brand="noi"]   { --action: var(--brand-noi);   --action-on: var(--brand-noi-on);   --action-ink: var(--brand-noi-ink); }
 [data-brand="nquoc"] { --action: var(--brand-nquoc); --action-on: var(--brand-nquoc-on); --action-ink: var(--brand-nquoc-ink); }
-[data-brand="nlh"]   { --action: var(--brand-nlh);   --action-on: var(--brand-nlh-on);   --action-ink: var(--brand-nlh-ink); }
+/* nlh.vn theo token trang chủ demo.nlh.vn (chị Nhi giao 21/11/2026), sáng và tối.
+   Đỏ thẫm chỉ cho nút chính (chữ trắng 9.6:1). Vàng kim #B7860B chỉ trang trí;
+   chữ vàng dùng --nlh-gold-text. Báo lỗi form là vàng kim đậm, không đỏ tươi. */
+[data-brand="nlh"] {
+  --bg-base: #F8F4EE; --bg-sunken: #F1EBE2; --bg-raised: #FFFFFF;
+  --text-primary: #0D0D0D; --text-secondary: #4A433D; --text-tertiary: #4A433D;
+  --line-hairline: #E2D7C7; --line-strong: #B9AC9B;
+  --action: #8B1A1A; --action-on: #FFFFFF; --action-ink: #7A5906;
+  --nlh-gold: #B7860B; --nlh-gold-text: #7A5906; --nlh-red-text: #8B1A1A;
+  --state-error: #7A5906;
+  --focus-ring: color-mix(in srgb, #7A5906 55%, transparent);
+}
+[data-theme="dark"][data-brand="nlh"] {
+  --bg-base: #0D0D0D; --bg-sunken: #0D0D0D; --bg-raised: #1B1716;
+  --text-primary: #F8F4EE; --text-secondary: #CFC4B8; --text-tertiary: #CFC4B8;
+  --line-hairline: #332B28; --line-strong: #4A3F3A;
+  --action: #8B1A1A; --action-on: #FFFFFF; --action-ink: #E8C070;
+  --nlh-gold: #B7860B; --nlh-gold-text: #E8C070; --nlh-red-text: #C79290;
+  --state-error: #E8C070;
+  --focus-ring: color-mix(in srgb, #E8C070 55%, transparent);
+}
 [data-theme="dark"][data-brand="nedu"]  { --action: var(--brand-nedu-dark);  --action-on: var(--brand-nedu-dark-on);  --action-ink: var(--brand-nedu-dark); }
 [data-theme="dark"][data-brand="nlt"]   { --action: var(--brand-nlt-dark);   --action-on: var(--brand-nlt-dark-on);   --action-ink: var(--brand-nlt-dark); }
 [data-theme="dark"][data-brand="noi"]   { --action: var(--brand-noi-dark);   --action-on: var(--brand-noi-dark-on);   --action-ink: var(--brand-noi-dark); }
 [data-theme="dark"][data-brand="nquoc"] { --action: var(--brand-nquoc-dark); --action-on: var(--brand-nquoc-dark-on); --action-ink: var(--brand-nquoc-dark); }
-[data-theme="dark"][data-brand="nlh"]   { --action: var(--brand-nlh-dark);   --action-on: var(--brand-nlh-dark-on);   --action-ink: var(--brand-nlh-gold);
-  /* Brand Guide v3.0: nền Đen #0D0D0D, chữ Kem */
-  --bg-base: var(--brand-nlh-black); --text-primary: var(--brand-nlh-cream); }
+
 
 /* ------------------------------------------------------------
    LỚP 2.5 — KHU VỰC (theo việc người dùng đang làm, không theo brand)
